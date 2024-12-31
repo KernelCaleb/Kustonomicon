@@ -1,0 +1,81 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/f36d0669-b3cc-4d35-9fa1-98b26dd8e192')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/f36d0669-b3cc-4d35-9fa1-98b26dd8e192')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "AAD-CAP | Conditional Access Policy Modified | RBE | [CAP]",
+                "description": "Trigger:\nThis detection triggers on changes to Conditional Access Policies.\n\nRisk:\nAdversaries may disable or modify conditional access policies to enable persistent access to compromised accounts.\n\nResponse:\n- Review the detection entities including who initiated the change and what was changed.\n- Determine if this change is unauthorized.\n- If the change was unauthorized, revert the change to restore previous controls and further investigate both the initiating actor and the Conditional Access Policy change.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "AuditLogs\n| where OperationName == \"Update conditional access policy\"\n| extend InitiatingActor = InitiatedBy.user.userPrincipalName\n| extend IPAddress = InitiatedBy.user.ipAddress\n| extend CAP = TargetResources.[0].displayName\n| extend CAPId = TargetResources.[0].id\n| extend newValue = TargetResources.[0].modifiedProperties.[0].newValue\n| extend oldValue = TargetResources.[0].modifiedProperties.[0].oldValue\n| project TimeGenerated, CorrelationId, InitiatingActor, IPAddress, CAP, CAPId, newValue, oldValue",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "PT15M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "CredentialAccess",
+                    "DefenseEvasion",
+                    "Persistence"
+                ],
+                "techniques": [
+                    "T1556"
+                ],
+                "subTechniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": {},
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "AadUserId",
+                                "columnName": "InitiatingActor"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "IPAddress"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}
