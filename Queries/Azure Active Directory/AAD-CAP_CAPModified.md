@@ -24,3 +24,6 @@ AuditLogs
 ### Analytic Rule
 - Yaml: [AAD-CAP_CAPModified.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Active%20Directory/AAD-CAP_CAPModified.yaml)
 - ARM: [AAD-CAP_CAPModified.json](https://github.com/KernelCaleb/KQL/blob/main/Analytic%20Rules/Azure%20Active%20Directory/AAD-CAP_CAPModified.json)
+
+### Notes
+This query can be helpful in detecting changes and misconfigurations in CAPs early. If the environment has frequent changes to CAPs then there can be some noise, however you can introduce filters in the query logic to remove detections from trusted `InitatingUPN` entities, or `CAPId` that are known to change frequently.
