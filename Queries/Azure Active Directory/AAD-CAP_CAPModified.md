@@ -22,5 +22,5 @@ AuditLogs
 | [T1556.009](https://attack.mitre.org/techniques/T1556/009/) | Modify Authentication Process: Conditional Access Policies | Credential Access, Defense Evasion, Presistence |
 
 ### Analytic Rule
-- Yaml: []()
+- Yaml: [AAD-CAP_CAPModified.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Active%20Directory/AAD-CAP_CAPModified.yaml)
 - ARM: [AAD-CAP_CAPModified.json](https://github.com/KernelCaleb/KQL/blob/main/Analytic%20Rules/Azure%20Active%20Directory/AAD-CAP_CAPModified.json)
