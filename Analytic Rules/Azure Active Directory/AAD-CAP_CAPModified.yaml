@@ -1,0 +1,60 @@
+﻿id: f36d0669-b3cc-4d35-9fa1-98b26dd8e192
+name: AAD-CAP | Conditional Access Policy Modified | RBE | [CAP]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection triggers on changes to Conditional Access Policies.
+
+  Risk:
+  Adversaries may disable or modify conditional access policies to enable persistent access to compromised accounts.
+
+  Response:
+  - Review the detection entities including who initiated the change and what was changed.
+  - Determine if this change is unauthorized.
+  - If the change was unauthorized, revert the change to restore previous controls and further investigate both the initiating actor and the Conditional Access Policy change.
+severity: Medium
+queryFrequency: 15m
+queryPeriod: 15m
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- CredentialAccess
+- DefenseEvasion
+- Persistence
+relevantTechniques:
+- T1556
+query: |-
+  AuditLogs
+  | where OperationName == "Update conditional access policy"
+  | extend InitiatingActor = InitiatedBy.user.userPrincipalName
+  | extend IPAddress = InitiatedBy.user.ipAddress
+  | extend CAP = TargetResources.[0].displayName
+  | extend CAPId = TargetResources.[0].id
+  | extend newValue = TargetResources.[0].modifiedProperties.[0].newValue
+  | extend oldValue = TargetResources.[0].modifiedProperties.[0].oldValue
+  | project TimeGenerated, CorrelationId, InitiatingActor, IPAddress, CAP, CAPId, newValue, oldValue
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: Account
+  fieldMappings:
+  - identifier: AadUserId
+    columnName: InitiatingActor
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: IPAddress
+suppressionDuration: 5h
+
