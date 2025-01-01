@@ -7,13 +7,13 @@ This query detects changes to Conditional Access Policies. Adversaries may disab
 ```kql
 AuditLogs
 | where OperationName == "Update conditional access policy"
-| extend InitiatingActor = InitiatedBy.user.userPrincipalName
+| extend InitiatingUPN = InitiatedBy.user.userPrincipalName
 | extend IPAddress = InitiatedBy.user.ipAddress
 | extend CAP = TargetResources.[0].displayName
 | extend CAPId = TargetResources.[0].id
-| extend newValue = TargetResources.[0].modifiedProperties.[0].newValue
-| extend oldValue = TargetResources.[0].modifiedProperties.[0].oldValue
-| project TimeGenerated, CorrelationId, InitiatingActor, IPAddress, CAP, CAPId, newValue, oldValue
+| extend NewCAP = TargetResources.[0].modifiedProperties.[0].newValue
+| extend OldCAP = TargetResources.[0].modifiedProperties.[0].oldValue
+| project TimeGenerated, CorrelationId, InitiatingUPN, IPAddress, CAP, CAPId, NewCAP, OldCAP
 ```
 
 ### MITRE ATT&CK
