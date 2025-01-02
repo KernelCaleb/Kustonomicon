@@ -1,0 +1,94 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/8ddafcc9-0df9-4a44-9650-ea99dfd5f5b3')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/8ddafcc9-0df9-4a44-9650-ea99dfd5f5b3')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "AAD-App | Credential Added to AAD App Registration | RBE | [App]",
+                "description": "Trigger:\nThis detection triggers when a secret or certificate is added to an Azure AD app registration.\n\nRisk:\nAdversaries may add adversary-controlled credentials to a cloud account to maintain persistent access to victim accounts and instances within the environment.\n\nResponse:\n- Investigate the initiating actor and application.\n- Determine if this activity is legitimate.\n- If the activity is not legitimate, remove the added credential, block the initiating actor, investigate activity from the app, and conduct further investigation into activity surrounding the event.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "AuditLogs\n| where OperationName == \"Update application – Certificates and secrets management \"\n| extend InitiatingUPN = tostring(parse_json(tostring(InitiatedBy.user)).userPrincipalName)\n| extend IPAddress = tostring(parse_json(tostring(InitiatedBy.user)).ipAddress)\n| extend UserAgent = tostring(AdditionalDetails[0].value)\n| extend AppObjectId = tostring(TargetResources[0].id)\n| extend AppDisplayName = tostring(TargetResources[0].displayName)\n| extend CredentialAdded = tostring(TargetResources[0].modifiedProperties[0].newValue)\n| project TimeGenerated, CorrelationId, InitiatingUPN, IPAddress, UserAgent, AppObjectId, AppDisplayName, CredentialAdded",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "PT15M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "Persistence"
+                ],
+                "techniques": [
+                    "T1098"
+                ],
+                "subTechniques": [
+                    "T1098.001"
+                ],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "InitiatingUPN"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "IPAddress"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "CloudApplication",
+                        "fieldMappings": [
+                            {
+                                "identifier": "AppId",
+                                "columnName": "AppObjectId"
+                            },
+                            {
+                                "identifier": "Name",
+                                "columnName": "AppDisplayName"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}
