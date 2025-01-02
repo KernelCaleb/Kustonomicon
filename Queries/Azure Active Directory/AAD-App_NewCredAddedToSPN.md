@@ -3,7 +3,7 @@
 ### Description
 This query detects when an Azure AD App Registration has a new credential added. Adversaries may add adversary-controlled credentials to a cloud account, like an Azure AD app registration, in order to maintain persistent access to victim accounts and instances within the environment.
 
-### KQL
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Update application – Certificates and secrets management "
