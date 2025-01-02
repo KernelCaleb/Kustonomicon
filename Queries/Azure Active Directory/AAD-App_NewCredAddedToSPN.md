@@ -7,12 +7,12 @@ This query detects when an Azure AD App Registration has a new credential added.
 ```kql
 AuditLogs
 | where OperationName == "Update application – Certificates and secrets management "
-| extend InitiatingUPN = tostring(parse_json(tostring(InitiatedBy.user)).userPrincipalName)
-| extend IPAddress = tostring(parse_json(tostring(InitiatedBy.user)).ipAddress)
-| extend UserAgent = tostring(AdditionalDetails[0].value)
-| extend AppObjectId = tostring(TargetResources[0].id)
-| extend AppDisplayName = tostring(TargetResources[0].displayName)
-| extend CredentialAdded = tostring(TargetResources[0].modifiedProperties[0].newValue)
+| extend InitiatingUPN = InitiatedBy.user.userPrincipalName
+| extend IPAddress = InitiatedBy.user.ipAddress
+| extend UserAgent = AdditionalDetails.[0].value
+| extend AppObjectId = TargetResources.[0].id
+| extend AppDisplayName = TargetResources.[0].displayName
+| extend CredentialAdded = TargetResources.[0].modifiedProperties.[0].newValue
 | project TimeGenerated, CorrelationId, InitiatingUPN, IPAddress, UserAgent, AppObjectId, AppDisplayName, CredentialAdded
 ```
 
