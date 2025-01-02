@@ -13,3 +13,7 @@
 This repo contains various KQL based queries and Sentinel Analytic rules in both ARM templates and Yaml, featured in the Detection of the Day from [Misconfigued.io](https://misconfigured.io/)
 
 Please note, this repo is a work in progress, check back later for additional content.
+
+
+
+Inspired by the fantastic KQL community.
