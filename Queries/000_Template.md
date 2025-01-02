@@ -9,9 +9,9 @@
 ```
 
 ### MITRE ATT&CK
-| ID | Technique | Tactic | Link |
-|----|-----------|--------|------|
-|    |           |        | []() |
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
 
 ### Analytic Rule
 - Yaml: []()
