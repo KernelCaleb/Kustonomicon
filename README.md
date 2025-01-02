@@ -16,4 +16,4 @@ Please note, this repo is a work in progress, check back later for additional co
 
 
 
-Inspired by the fantastic KQL community, be sure to check out their fantastic work here: https://kqlquery.com/posts/kql-sources-2025/
+Inspired by the fantastic KQL community, be sure to check out all the great work here: https://kqlquery.com/posts/kql-sources-2025/
