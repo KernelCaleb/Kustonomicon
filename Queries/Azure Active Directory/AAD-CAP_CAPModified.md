@@ -3,7 +3,7 @@
 ### Description
 This query detects changes to Conditional Access Policies. Adversaries may disable or modify conditional access policies to enable persistent access to compromised accounts. Conditional access policies are additional verifications used by identity providers and identity and access management systems to determine whether a user should be granted access to a resource.
 
-### KQL
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Update conditional access policy"
