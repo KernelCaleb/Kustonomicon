@@ -26,3 +26,4 @@ AuditLogs
 - ARM: [AAD-App_NewCredAddedToSPN.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Active%20Directory/AAD-App_NewCredAddedToSPN.json)
 
 ### Notes
+This analytic rule detects when a secret or client certificate has been added to an app registration, this activity can be an indication that an adversary has accessed the environment and is seeking to maintain persistence or escalate privilege. This analytic rule can generate noise, you can filter out events based on the `InitiatingUPN` and `AppObjectId` values.
