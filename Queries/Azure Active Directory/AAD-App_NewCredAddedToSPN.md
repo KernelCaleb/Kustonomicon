@@ -22,7 +22,7 @@ AuditLogs
 | [T1098.001](https://attack.mitre.org/techniques/T1098/001/) | Account Manipulation: Additional Cloud Credentials | Persistence, Privilege Escalation |
 
 ### Analytic Rule
-- Yaml: []()
-- ARM: []()
+- Yaml: [AAD-App_NewCredAddedToSPN.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Active%20Directory/AAD-App_NewCredAddedToSPN.json)
+- ARM: [AAD-App_NewCredAddedToSPN.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Active%20Directory/AAD-App_NewCredAddedToSPN.json)
 
 ### Notes
