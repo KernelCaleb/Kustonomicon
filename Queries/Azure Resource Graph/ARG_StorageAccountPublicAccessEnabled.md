@@ -28,7 +28,7 @@ arg('').resourcechanges
 ```
 
 ```kql
-resources
+arg('').resources
 | where type == "microsoft.storage/storageaccounts"
 | extend PublicAccess = parse_json(properties).allowBlobPublicAccess
 | where PublicAccess == "true"
