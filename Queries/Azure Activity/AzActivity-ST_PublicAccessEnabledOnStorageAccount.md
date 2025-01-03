@@ -27,3 +27,4 @@ AzureActivity
 
 ### Notes
 This analytic rule detects when a request is made to enable public access on a storage account. While Azure Policy should be in place to control this setting, an administrator with appropriate permissions or an exclusion on a resource group or subscription could lead to an unwanted misconfiguration. This rule can help catch a misconfiguration before it becomes an incident.
+You can also used the Azure Resource Graph to detect this event, as well as all storage accounts that currently have allowBlobPublicAccess Enabled, you can find this query [here](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Resource%20Graph/ARG_StorageAccountPublicAccessEnabled.md).
