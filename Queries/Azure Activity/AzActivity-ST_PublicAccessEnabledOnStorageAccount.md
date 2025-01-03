@@ -1,7 +1,7 @@
 # Azure Activity: Public Access Enabled on Storage Account
 
 ### Description
-This query uses the AzureActivity table to detect when a request is made to enable public access to a storage account. While this should not be a problem in 2025, and you should have Azure Policy in place to prevent this. It is still possible for an exception to be made and the policy bypassed. This query can help catch a misconfiguration before it becomes an incident.
+This query uses the AzureActivity table to detect when a request is made to enable public access to a storage account. While this should not be a problem in 2025, and you should have Azure Policy in place to prevent this. It is still possible for an exception to be made and the policy bypassed.
 
 ### Query
 ```kql
@@ -22,7 +22,8 @@ AzureActivity
 | [T1530](https://attack.mitre.org/techniques/T1530/) | Data from Cloud Storage  | Collection |
 
 ### Analytic Rule
-- Yaml: []()
-- ARM: []()
+- Yaml: [AzActivity-ST_PublicAccessEnabledOnStorageAccount.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Activity/AzActivity-ST_PublicAccessEnabledOnStorageAccount.yaml)
+- ARM: [AzActivity-ST_PublicAccessEnabledOnStorageAccount.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Activity/AzActivity-ST_PublicAccessEnabledOnStorageAccount.json)
 
 ### Notes
+This analytic rule detects when a request is made to enable public access on a storage account. While Azure Policy should be in place to control this setting, an administrator with appropriate permissions or an exclusion on a resource group or subscription could lead to an unwanted misconfiguration. This rule can help catch a misconfiguration before it becomes an incident.
