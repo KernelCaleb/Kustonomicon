@@ -18,7 +18,7 @@ AzureActivity
 ### MITRE ATT&CK
 | ID | Technique | Tactic |
 |----|-----------|--------|
-| [T1562.007](https://attack.mitre.org/techniques/T1562/007/) | mpair Defenses: Disable or Modify Cloud Firewall | Defense Evasion |
+| [T1562.007](https://attack.mitre.org/techniques/T1562/007/) | Impair Defenses: Disable or Modify Cloud Firewall | Defense Evasion |
 | [T1530](https://attack.mitre.org/techniques/T1530/) | Data from Cloud Storage  | Collection |
 
 ### Analytic Rule
