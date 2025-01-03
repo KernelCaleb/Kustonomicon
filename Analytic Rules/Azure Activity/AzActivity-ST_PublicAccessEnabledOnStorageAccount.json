@@ -1,0 +1,92 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/2c19455c-a0eb-4fc5-956f-19df1d29ec6d')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/2c19455c-a0eb-4fc5-956f-19df1d29ec6d')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "AzActivity-ST | Public Access Enabled on Storage Account | Misconfiguration | [Az-ST]",
+                "description": "Trigger:\nThis detection triggers when public access is enabled on a storage account through the 'requestbody' field in the AzureActivity table.\n\nRisk:\nEnabling public access on a storage account his a high risk event and can lead to unintentional data loss. \n\nResponse:\n- Determine if this change was planned and if the content in the storage account is appropriate for public access.\n- If this change was unplanned, revert the change, investigate the InitiatingUPN, and review additional logs to determine if data was accessed unauthorized.",
+                "severity": "High",
+                "enabled": true,
+                "query": "AzureActivity\r\n| where OperationNameValue == \"MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE\"\r\n| extend parse_Properties = parse_json(Properties)\r\n| extend parse_requestBody = parse_json(tostring(parse_Properties.requestbody))\r\n| where parse_requestBody contains \"allowBlobPublicAccess\"\r\n| extend PublicAccess = tostring(parse_requestBody.properties.allowBlobPublicAccess)\r\n| where PublicAccess == \"true\"\r\n| project TimeGenerated, CorrelationId, Caller, CallerIpAddress, SubscriptionId, ResourceGroup, _ResourceId",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "PT15M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "DefenseEvasion",
+                    "Collection"
+                ],
+                "techniques": [
+                    "T1562",
+                    "T1530"
+                ],
+                "subTechniques": [
+                    "T1562.007"
+                ],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "Caller"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "CallerIpAddress"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "AzureResource",
+                        "fieldMappings": [
+                            {
+                                "identifier": "ResourceId",
+                                "columnName": "_ResourceId"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}
