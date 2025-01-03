@@ -5,7 +5,7 @@ This query detects when public access is enabled for a storage account where it 
 
 ### Query
 ```kql
-resourcechanges
+arg('').resourcechanges
 | extend ParsedProperties = parse_json(properties)
 | extend TimeStamp = ParsedProperties.changeAttributes.timestamp
 | extend CorrelationId = ParsedProperties.changeAttributes.correlationId
