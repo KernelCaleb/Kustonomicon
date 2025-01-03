@@ -1,7 +1,3 @@
-# Template
-
-----
-
 # Name
 
 ### Description
