@@ -1,7 +1,7 @@
 # Azure Resource Graph: Storage Account - Public Access Enabled
 
 ### Description
-This query detects when public access is enabled for a storage account where it was previously disabled.
+This query detects when public access is enabled for a storage account where it was previously disabled. Using the `resourcechanges` table you can detect when allow blob public access is enabled when it was previously disabled. Using the `resources` table, you can determine which storage accounts currently have allow blob public access enabled.
 
 ### Query
 ```kql
@@ -25,6 +25,14 @@ arg('').resourcechanges
 | where PreviousValue == "False"
 | where NewValue == "True"
 | project TimeStamp, CorrelationId, InitiatingUPN, Subscription, ResourceGroup, StorageAccount, ResourceId
+```
+
+```kql
+resources
+| where type == "microsoft.storage/storageaccounts"
+| extend PublicAccess = parse_json(properties).allowBlobPublicAccess
+| where PublicAccess == "true"
+| project subscriptionId, resourceGroup, name, id, location, kind, sku, tags
 ```
 
 ### MITRE ATT&CK
