@@ -1,4 +1,4 @@
-# Azure: Storage Account - Public Access Enabled
+# Azure Activity: Public Access Enabled on Storage Account
 
 ### Description
 This query uses the AzureActivity table to detect when a request is made to enable public access to a storage account. While this should not be a problem in 2025, and you should have Azure Policy in place to prevent this. It is still possible for an exception to be made and the policy bypassed. This query can help catch a misconfiguration before it becomes an incident.
@@ -18,7 +18,7 @@ AzureActivity
 ### MITRE ATT&CK
 | ID | Technique | Tactic |
 |----|-----------|--------|
-| [T1562.007](https://attack.mitre.org/techniques/T1562/007/) | mpair Defenses: Disable or Modify Cloud Firewall | Defense Evasion |
+| [T1562.007](https://attack.mitre.org/techniques/T1562/007/) | Impair Defenses: Disable or Modify Cloud Firewall | Defense Evasion |
 | [T1530](https://attack.mitre.org/techniques/T1530/) | Data from Cloud Storage  | Collection |
 
 ### Analytic Rule
