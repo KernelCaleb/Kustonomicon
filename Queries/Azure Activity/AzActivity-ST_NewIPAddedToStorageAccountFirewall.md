@@ -28,8 +28,8 @@ AzureActivity
 | [T1530](https://attack.mitre.org/techniques/T1530/) | Data from Cloud Storage  | Collection |
 
 ### Analytic Rule
-- Yaml: []()
-- ARM: []()
+- Yaml: [AzActivity-ST_NewIPAddedToStorageAccountFirewall.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Activity/AzActivity-ST_NewIPAddedToStorageAccountFirewall.yaml)
+- ARM: [AzActivity-ST_NewIPAddedToStorageAccountFirewall.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Activity/AzActivity-ST_NewIPAddedToStorageAccountFirewall.json)
 
 ### Notes
 This query can be beneficial in hunting unauthorized changes to storage account firewall rules. As a detection this may generate noise, however, you can leverage the `Caller`, `_ResourceId`, and even the `NewIPAddress` values to filter out noise.
