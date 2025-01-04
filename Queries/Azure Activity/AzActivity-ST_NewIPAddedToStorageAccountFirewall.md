@@ -1,7 +1,7 @@
 # Azure Activity: New IP Address Added to Storage Account Firewall
 
 ### Description
-This query uses the AzureActivity table to detect when a new IP address is added to the storage account firewall. You can define a list of known IP address with the `let` operator, or you can use a watchlist or import an external data source.  An adversary with appropriate permissions may introduce new firewall rule to bypass controls and allow access to the victim storage account.
+This query uses the AzureActivity table to detect when a new IP address is added to the storage account firewall. You can define a list of known IP address with the `let` operator, use a watchlist, or import an external data source. An adversary with appropriate permissions may introduce new firewall rules to bypass controls and allow access to the target storage account.
 
 ### Query
 ```kql
