@@ -1,7 +1,7 @@
 # Azure Storage Account: Mass Blob Download
 
 ### Description
-This query will detect when a mass download of unique blob files occures, use the `blob_threshold` value to define when to generate an alert or return results. Adversaries access and exfiltrate blob data after through bypassing storage account controls or a misconfiguration of the storage account access controls. This query can help to identify suspicious behavior, alert on exfiltration of sensitive data from a given storage account, or uncover unknown access.
+This query will detect when a mass download of unique blob files occurs, use the `blob_threshold` value to define when to generate an alert or return results. Adversaries access and exfiltrate blob data after through bypassing storage account controls or a misconfiguration of the storage account access controls. This query can help to identify suspicious behavior, alert on exfiltration of sensitive data from a given storage account, or uncover unknown access.
 
 ### Query
 ```kql
