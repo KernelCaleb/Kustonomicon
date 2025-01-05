@@ -5,10 +5,10 @@ This query will detect when a mass download of unique blob files occures, use th
 
 ### Query
 ```kql
-let blob_threshold = 4;
+let blob_threshold = 50;
 StorageBlobLogs
 | where OperationName == "GetBlob"
-| summarize TotalUniqueDownloads = dcount(ObjectKey) by AccountName, CallerIpAddress
+| summarize TotalUniqueDownloads = dcount(ObjectKey) by bin(TimeGenerated, 1h), AccountName, CallerIpAddress
 | where TotalUniqueDownloads > blob_threshold
 ```
 
