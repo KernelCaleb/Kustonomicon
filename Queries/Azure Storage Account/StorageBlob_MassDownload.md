@@ -18,8 +18,8 @@ StorageBlobLogs
 | [T1530](https://attack.mitre.org/techniques/T1530/) | Data from Cloud Storage  | Collection |
 
 ### Analytic Rule
-- Yaml: []()
-- ARM: []()
+- Yaml: [StorageBlob_MassDownload.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Storage%20Account/StorageBlob_MassDownload.json)
+- ARM: [StorageBlob_MassDownload.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Storage%20Account/StorageBlob_MassDownload.json)
 
 ### Notes
 As an analytic rule, you can tune results based on the `CallerIpAddress` value and remove known safe IPs or filter out any storage accounts, `AccountName`, that are intended to be accessed and contents downloaded.
