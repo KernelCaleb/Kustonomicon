@@ -1,0 +1,53 @@
+﻿id: dd46ee91-4abb-48fd-ba0b-b4ec9e725340
+name: AzST-BlobStorage | Mass Download | RBE | [BlobStorage] [Az-ST]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection will trigger when a large volume of unique blob objects have been downloaded over a short period of time.
+
+  Risk:
+  This type of activity may indicate data exfiltration.
+
+  Response:
+  - Review the storage account and associated blobs, determine if this is activity is expected.
+  - If this activity is not expected; investigate the CallerIPAddress for additional suspicious activity, revoke access to the storage account and any other resources, determine which blobs were accessed based on the ObjectKey.
+severity: Medium
+queryFrequency: 6h
+queryPeriod: 6h
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- Collection
+relevantTechniques:
+- T1530
+query: |-
+  let blob_threshold = 50;
+  StorageBlobLogs
+  | where OperationName == "GetBlob"
+  | summarize TotalUniqueDownloads = dcount(ObjectKey) by bin(TimeGenerated, 1h), AccountName, CallerIpAddress
+  | where TotalUniqueDownloads > blob_threshold
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: CallerIpAddress
+- entityType: AzureResource
+  fieldMappings:
+  - identifier: ResourceId
+    columnName: AccountName
+suppressionDuration: 5h
+
