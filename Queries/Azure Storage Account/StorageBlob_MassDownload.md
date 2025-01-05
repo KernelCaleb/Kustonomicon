@@ -18,7 +18,7 @@ StorageBlobLogs
 | [T1530](https://attack.mitre.org/techniques/T1530/) | Data from Cloud Storage  | Collection |
 
 ### Analytic Rule
-- Yaml: [StorageBlob_MassDownload.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Storage%20Account/StorageBlob_MassDownload.json)
+- Yaml: [StorageBlob_MassDownload.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Storage%20Account/StorageBlob_MassDownload.yaml)
 - ARM: [StorageBlob_MassDownload.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Storage%20Account/StorageBlob_MassDownload.json)
 
 ### Notes
