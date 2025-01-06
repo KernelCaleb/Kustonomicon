@@ -1,0 +1,92 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/64fc1fd3-8822-4ff5-91e1-2db8429da58e')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/64fc1fd3-8822-4ff5-91e1-2db8429da58e')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "AzActivity-ST | New IP Address Added to Storage Account Firewall | RBE | [Az-ST]",
+                "description": "Trigger:\nThis detection will trigger when a new IP address has been added to a storage account firewall rule.\n\nRisk:\nAn adversary with appropriate permissions may alter firewall rules to bypass controls and allow access to adversary control infrastructure.\n\nResponse:\n- Determine if the action was authorized and if the IP address is known and safe.\n- If this change was unauthorized, block the caller account, revert the change, initiate an investigation to determine if data was accessed from the new IP and any additional activity carried out by the caller.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "let knownIPs = dynamic([\"149.154.1.52\", \"10.10.10.10\", \"10.10.10.20\", \"10.10.10.30\"]); // Define your set of known IPs, or use a watchlist, or import an external data source\nAzureActivity\n| where OperationNameValue == \"MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE\"\n| extend parse_Properties = parse_json(Properties)\n| extend parse_requestBody = parse_json(tostring(parse_Properties.requestbody))\n| where parse_requestBody contains \"networkAcls\"\n| extend NetworkAcls = tostring(parse_requestBody.properties.networkAcls)\n| extend parse_NetworkAcls = parse_json(NetworkAcls)\n| extend ipRules = parse_json(tostring(parse_NetworkAcls.ipRules))\n| mv-apply ip = ipRules on (\n    extend NewIPAddress = tostring(ip.value)\n    | where not(NewIPAddress in (knownIPs))\n)\n| project TimeGenerated, CorrelationId, Caller, CallerIpAddress, NewIPAddress, SubscriptionId, ResourceGroup, _ResourceId",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "PT15M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "DefenseEvasion",
+                    "Collection"
+                ],
+                "techniques": [
+                    "T1562",
+                    "T1530"
+                ],
+                "subTechniques": [
+                    "T1562.007"
+                ],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": true,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT15M",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "Caller"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "NewIPAddress"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "AzureResource",
+                        "fieldMappings": [
+                            {
+                                "identifier": "ResourceId",
+                                "columnName": "_ResourceId"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}

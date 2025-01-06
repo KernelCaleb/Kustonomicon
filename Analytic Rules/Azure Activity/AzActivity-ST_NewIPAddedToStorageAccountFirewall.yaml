@@ -1,0 +1,68 @@
+﻿id: 64fc1fd3-8822-4ff5-91e1-2db8429da58e
+name: AzActivity-ST | New IP Address Added to Storage Account Firewall | RBE | [Az-ST]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection will trigger when a new IP address has been added to a storage account firewall rule.
+
+  Risk:
+  An adversary with appropriate permissions may alter firewall rules to bypass controls and allow access to adversary control infrastructure.
+
+  Response:
+  - Determine if the action was authorized and if the IP address is known and safe.
+  - If this change was unauthorized, block the caller account, revert the change, initiate an investigation to determine if data was accessed from the new IP and any additional activity carried out by the caller.
+severity: Medium
+queryFrequency: 15m
+queryPeriod: 15m
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- DefenseEvasion
+- Collection
+relevantTechniques:
+- T1562.007
+- T1530
+query: |-
+  let knownIPs = dynamic(["149.154.1.52", "10.10.10.10", "10.10.10.20", "10.10.10.30"]); // Define your set of known IPs, or use a watchlist, or import an external data source
+  AzureActivity
+  | where OperationNameValue == "MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE"
+  | extend parse_Properties = parse_json(Properties)
+  | extend parse_requestBody = parse_json(tostring(parse_Properties.requestbody))
+  | where parse_requestBody contains "networkAcls"
+  | extend NetworkAcls = tostring(parse_requestBody.properties.networkAcls)
+  | extend parse_NetworkAcls = parse_json(NetworkAcls)
+  | extend ipRules = parse_json(tostring(parse_NetworkAcls.ipRules))
+  | mv-apply ip = ipRules on (
+      extend NewIPAddress = tostring(ip.value)
+      | where not(NewIPAddress in (knownIPs))
+  )
+  | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, NewIPAddress, SubscriptionId, ResourceGroup, _ResourceId
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: true
+    reopenClosedIncident: false
+    lookbackDuration: 15m
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: Account
+  fieldMappings:
+  - identifier: FullName
+    columnName: Caller
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: NewIPAddress
+- entityType: AzureResource
+  fieldMappings:
+  - identifier: ResourceId
+    columnName: _ResourceId
+suppressionDuration: 5h
+

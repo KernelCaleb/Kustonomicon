@@ -1,0 +1,79 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/dd46ee91-4abb-48fd-ba0b-b4ec9e725340')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/dd46ee91-4abb-48fd-ba0b-b4ec9e725340')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "AzST-BlobStorage | Mass Download | RBE | [BlobStorage] [Az-ST]",
+                "description": "Trigger:\nThis detection will trigger when a large volume of unique blob objects have been downloaded over a short period of time.\n\nRisk:\nThis type of activity may indicate data exfiltration.\n\nResponse:\n- Review the storage account and associated blobs, determine if this is activity is expected.\n- If this activity is not expected; investigate the CallerIPAddress for additional suspicious activity, revoke access to the storage account and any other resources, determine which blobs were accessed based on the ObjectKey.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "let blob_threshold = 50;\nStorageBlobLogs\n| where OperationName == \"GetBlob\"\n| summarize TotalUniqueDownloads = dcount(ObjectKey) by bin(TimeGenerated, 1h), AccountName, CallerIpAddress\n| where TotalUniqueDownloads > blob_threshold",
+                "queryFrequency": "PT6H",
+                "queryPeriod": "PT6H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "Collection"
+                ],
+                "techniques": [
+                    "T1530"
+                ],
+                "subTechniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "CallerIpAddress"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "AzureResource",
+                        "fieldMappings": [
+                            {
+                                "identifier": "ResourceId",
+                                "columnName": "AccountName"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}
