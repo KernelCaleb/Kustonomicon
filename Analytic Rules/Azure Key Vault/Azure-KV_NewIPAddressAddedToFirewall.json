@@ -1,0 +1,92 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/5e0e8051-4750-496d-8b66-251c22b71224')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/5e0e8051-4750-496d-8b66-251c22b71224')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "Azure-KV | New IP Address Added to Firewall | Risky Event | [Az-KV]",
+                "description": "Trigger:\nThis detection will trigger when a new or unknown IP address is added to a Key Vault firewall.\n\nRisk:\nAn adversary with appropriate permissions may alter firewall rules to bypass controls and allow access to adversary control infrastructure.\n\nTrigger:\nResponse:\n- Determine if the action was authorized and if the IP address is known and safe.\n- If this change was unauthorized, block the caller account, revert the change, and initiate an investigation to determine if any keys, certificates, or secrets were accessed from the new IP and if any additional activity was carried out by the caller.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "let knownIPs = dynamic([\"10.10.10.10/32\", \"10.10.10.20/32\", \"10.10.10.30/32\"]); // Define your set of known IPs, or use a watchlist, or import an external data source\r\nAzureDiagnostics\r\n| where OperationName == \"VaultPatch\"\r\n| extend Caller = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s\r\n| extend NewIPAddress = addedIpRule_Value_s\r\n| where NewIPAddress != \"\"\r\n| where NewIPAddress !in (knownIPs)\r\n| project TimeGenerated, CorrelationId, Caller, CallerIPAddress, NewIPAddress, SubscriptionId, ResourceGroup, Resource, ResourceId",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "PT15M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "DefenseEvasion",
+                    "CredentialAccess"
+                ],
+                "techniques": [
+                    "T1562",
+                    "T1555"
+                ],
+                "subTechniques": [
+                    "T1562.007"
+                ],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "Caller"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "NewIPAddress"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "AzureResource",
+                        "fieldMappings": [
+                            {
+                                "identifier": "ResourceId",
+                                "columnName": "ResourceId"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}

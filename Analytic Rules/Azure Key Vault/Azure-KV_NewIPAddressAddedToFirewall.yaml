@@ -1,0 +1,63 @@
+﻿id: 5e0e8051-4750-496d-8b66-251c22b71224
+name: Azure-KV | New IP Address Added to Firewall | Risky Event | [Az-KV]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection will trigger when a new or unknown IP address is added to a Key Vault firewall.
+
+  Risk:
+  An adversary with appropriate permissions may alter firewall rules to bypass controls and allow access to adversary control infrastructure.
+
+  Trigger:
+  Response:
+  - Determine if the action was authorized and if the IP address is known and safe.
+  - If this change was unauthorized, block the caller account, revert the change, and initiate an investigation to determine if any keys, certificates, or secrets were accessed from the new IP and if any additional activity was carried out by the caller.
+severity: Medium
+queryFrequency: 15m
+queryPeriod: 15m
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- DefenseEvasion
+- CredentialAccess
+relevantTechniques:
+- T1562.007
+- T1555
+query: |-
+  let knownIPs = dynamic(["10.10.10.10/32", "10.10.10.20/32", "10.10.10.30/32"]); // Define your set of known IPs, or use a watchlist, or import an external data source
+  AzureDiagnostics
+  | where OperationName == "VaultPatch"
+  | extend Caller = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s
+  | extend NewIPAddress = addedIpRule_Value_s
+  | where NewIPAddress != ""
+  | where NewIPAddress !in (knownIPs)
+  | project TimeGenerated, CorrelationId, Caller, CallerIPAddress, NewIPAddress, SubscriptionId, ResourceGroup, Resource, ResourceId
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: Account
+  fieldMappings:
+  - identifier: FullName
+    columnName: Caller
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: NewIPAddress
+- entityType: AzureResource
+  fieldMappings:
+  - identifier: ResourceId
+    columnName: ResourceId
+suppressionDuration: 5h
+
