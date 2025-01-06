@@ -27,4 +27,3 @@ AzureDiagnostics
 
 ### Notes
 This query can be beneficial in hunting unauthorized changes to Key Vault firewall rules. As a detection this may generate noise if there are frequent changes to Key Vault firewall rules, however, you can leverage the `KnowIPs`, `Caller`, `_ResourceId`, and the `NewIPAddress` values to filter out unwanted noise.
-
