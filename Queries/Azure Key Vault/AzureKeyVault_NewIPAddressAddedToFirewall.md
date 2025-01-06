@@ -22,8 +22,8 @@ AzureDiagnostics
 | [T1555.006](https://attack.mitre.org/techniques/T1555/006/) | Credentials from Password Stores: Cloud Secrets Managemetn Stores | Credential Access |
 
 ### Analytic Rule
-- Yaml: 
-- ARM: 
+- Yaml: [Azure-KV_NewIPAddressAddedToFirewall.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_NewIPAddressAddedToFirewall.yaml)
+- ARM: [Azure-KV_NewIPAddressAddedToFirewall.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_NewIPAddressAddedToFirewall.json)
 
 ### Notes
 This query can be beneficial in hunting unauthorized changes to Key Vault firewall rules. As a detection this may generate noise if there are frequent changes to Key Vault firewall rules, however, you can leverage the `KnowIPs`, `Caller`, `_ResourceId`, and the `NewIPAddress` values to filter out unwanted noise.
