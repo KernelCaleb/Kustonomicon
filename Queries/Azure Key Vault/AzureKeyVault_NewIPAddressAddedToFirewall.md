@@ -1,4 +1,4 @@
-# Azure Key Vault: New IP Address Added to Key Vautl Firewall
+# Azure Key Vault: New IP Address Added to Key Vault Firewall
 
 ### Description
 This query detects when a new or unknown IP address is added to an Azure Key Vault firewall.  You can define a list of known IP address with the `let` operator, use a watchlist, or import an external data source. An adversary with appropriate permissions may introduce new firewall rules to bypass controls and allow access to the Key Vault.
