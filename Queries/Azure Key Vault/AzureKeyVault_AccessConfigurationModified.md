@@ -1,4 +1,4 @@
-# Azure Key Vault: New IP Address Added to Key Vautl Firewall
+# Azure Key Vault: Vault Access Configuration Modified
 
 ### Description
 This query detects when a Key Vault Access Configuration policy is changed from `Azure role-based access` to `vault access policy`. `Azure role-based access` policy is the recommended configuration of Key Vault access and allows for enhanced security, the `vault access policy` can be modified by any actor who has `Contributor` or `Key Vault Contributor` access to the Key Vault, allowing for potential privilege escalation.
@@ -52,7 +52,10 @@ arg('').resources
 | [T1556](https://attack.mitre.org/techniques/T1556/) | Modify Authentication Process | Credential Access, Defense Evasion, Persistence |
 
 ### Analytic Rule
-- Yaml: 
-- ARM: 
+- Yaml: [Azure-KV_KeyVaultAccessConfigurationModified.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_KeyVaultAccessConfigurationModified.yaml)
+- ARM: [Azure-KV_KeyVaultAccessConfigurationModified.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_KeyVaultAccessConfigurationModified.json)
 
 ### Notes
+The `vault access policy` allows for granular access, however, a privilege escalation path exists where an actor who has the `Contributor` or `Key Vault Contributor` role can grant themselves access to the vault. Monitor for a change from `Azure role-based access` to `vault access policy` may identify suspicious unwanted behavior, additionally, using the the Azure Resource Graph you can not only monitor for this change, but identify all Key Vaults that are not using RBAC.
+
+Reference: [Escalating privilges to read secrets with Azure Key Vault access policies, Katie Knowles](https://securitylabs.datadoghq.com/articles/escalating-privileges-to-read-secrets-with-azure-key-vault-access-policies/)
