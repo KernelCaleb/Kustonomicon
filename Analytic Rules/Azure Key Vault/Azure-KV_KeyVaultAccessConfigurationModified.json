@@ -1,0 +1,89 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/433a18cd-6234-4ca2-b36b-fc5b5db2c7a5')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/433a18cd-6234-4ca2-b36b-fc5b5db2c7a5')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "Azure-KV | Key Vault Access Configuration Modified | Risky Event | [Az-KV]",
+                "description": "Trigger:\nThis detection will trigger when an Azure Key Vault access configuration is modified and enableRbacAuthorization is disabled.\n\nRisk:\nVault Access Policies can allow for privilege escalation, and a change from RBAC based access to Vault Access should be investigated.\n\nResponse:\n- Investigate whether the change was authorized\n- If the change was not authorized; revert the change, block the caller, determine if any keys, secrets, or certificates were accessed, investigate for additional suspicious activity from the caller and caller IP address.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "AzureDiagnostics\r\n| where OperationName contains \"VaultPatch\"\r\n| where properties_enableRbacAuthorization_b == \"false\"\r\n| extend Caller = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s\r\n| project TimeGenerated, CorrelationId, Caller, CallerIPAddress, SubscriptionId, ResourceGroup, Resource, ResourceId",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "PT15M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "CredentialAccess"
+                ],
+                "techniques": [
+                    "T1555",
+                    "T1556"
+                ],
+                "subTechniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "Caller"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "CallerIPAddress"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "AzureResource",
+                        "fieldMappings": [
+                            {
+                                "identifier": "ResourceId",
+                                "columnName": "SubscriptionId"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}

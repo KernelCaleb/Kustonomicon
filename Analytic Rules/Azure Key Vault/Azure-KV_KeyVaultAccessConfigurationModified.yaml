@@ -1,0 +1,58 @@
+﻿id: 433a18cd-6234-4ca2-b36b-fc5b5db2c7a5
+name: Azure-KV | Key Vault Access Configuration Modified | Risky Event | [Az-KV]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection will trigger when an Azure Key Vault access configuration is modified and enableRbacAuthorization is disabled.
+
+  Risk:
+  Vault Access Policies can allow for privilege escalation, and a change from RBAC based access to Vault Access should be investigated.
+
+  Response:
+  - Investigate whether the change was authorized
+  - If the change was not authorized; revert the change, block the caller, determine if any keys, secrets, or certificates were accessed, investigate for additional suspicious activity from the caller and caller IP address.
+severity: Medium
+queryFrequency: 15m
+queryPeriod: 15m
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- CredentialAccess
+relevantTechniques:
+- T1555
+- T1556
+query: |-
+  AzureDiagnostics
+  | where OperationName contains "VaultPatch"
+  | where properties_enableRbacAuthorization_b == "false"
+  | extend Caller = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s
+  | project TimeGenerated, CorrelationId, Caller, CallerIPAddress, SubscriptionId, ResourceGroup, Resource, ResourceId
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: Account
+  fieldMappings:
+  - identifier: FullName
+    columnName: Caller
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: CallerIPAddress
+- entityType: AzureResource
+  fieldMappings:
+  - identifier: ResourceId
+    columnName: SubscriptionId
+suppressionDuration: 5h
+

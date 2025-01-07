@@ -36,6 +36,15 @@ arg('').resourcechanges
 | project TimeStamp, CorrelationId, InitiatingUPN, Subscription, ResourceGroup, ResourceName, ResourceId
 ```
 
+```kql
+arg('').resources
+| where type == "microsoft.keyvault/vaults"
+| extend parse_properties = parse_json(properties)
+| extend enableRbacAuthorization = parse_properties.enableRbacAuthorization
+| where enableRbacAuthorization == "false"
+| project subscriptionId, resourceGroup, name, id, enableRbacAuthorization, location, kind, sku, tags
+```
+
 ### MITRE ATT&CK
 | ID | Technique | Tactic |
 |----|-----------|--------|
