@@ -40,6 +40,7 @@ arg('').resourcechanges
 | ID | Technique | Tactic |
 |----|-----------|--------|
 | [T1555.006](https://attack.mitre.org/techniques/T1555/006/) | Credentials from Password Stores: Cloud Secrets Managemetn Stores | Credential Access |
+| [T1556](https://attack.mitre.org/techniques/T1556/) | Modify Authentication Process | Credential Access, Defense Evasion, Persistence |
 
 ### Analytic Rule
 - Yaml: 
