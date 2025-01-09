@@ -1,0 +1,81 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/2489b321-9c96-4002-b4c5-acc0ee76f9e6')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/2489b321-9c96-4002-b4c5-acc0ee76f9e6')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "Azure-KV | Large Number of Items Delete in Short Time | Risky Event | [Az-KV]",
+                "description": "Trigger:\nThis detection will trigger when a large number of items are deleted from Azure Key Vaults in a short period of time from a single actor.\n\nRisk:\nThis type of activity can indicate an adversary attempting to damage operations, a malicious insider, or a misconfigured service.\n\nResponse:\n- Determine if the items deleted were performed as a part of a known plan.\n- If this activity was not expected, block the Caller account to limit addition impact, restore the delete items, investigate all activity carried out by the Caller, determine if the Key Vault items were accessed and used by the Caller before deletion.",
+                "severity": "High",
+                "enabled": true,
+                "query": "let Threshold = 5;\nlet DeleteOperations = dynamic([\"SecretDelete\", \"KeyDelete\", \"CertificateDelete\"]);\nAzureDiagnostics\n| where ResourceType == \"VAULTS\" and OperationName in (DeleteOperations)\n| where ResultType == \"Success\"\n| extend Caller = coalesce(identity_claim_unique_name_s, \"UnknownCaller\")\n| summarize EventCount = count(), StartTime = min(TimeGenerated), EndTime = max(TimeGenerated), IPAddressSet = make_set(CallerIPAddress) \n    by Caller, bin(TimeGenerated, 1h)\n| where EventCount > Threshold\n| project StartTime, EndTime, Caller, EventCount, IPAddressSet",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "P1D",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "CredentialAccess",
+                    "Impact"
+                ],
+                "techniques": [
+                    "T1555",
+                    "T1485"
+                ],
+                "subTechniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": {},
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "Caller"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "IPAddressSet"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}
