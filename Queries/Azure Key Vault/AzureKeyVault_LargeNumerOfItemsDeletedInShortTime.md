@@ -24,8 +24,8 @@ AzureDiagnostics
 | [T1485](https://attack.mitre.org/techniques/T1485/) | Data Destruction | Impact |
 
 ### Analytic Rule
-- Yaml: 
-- ARM:
+- Yaml: [Azure-KV_LargeNumberOfItemsDeleted.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_LargeNumberOfItemsDeleted.yaml)
+- ARM: [Azure-KV_LargeNumberOfItemsDeleted.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_LargeNumberOfItemsDeleted.json)
 
 ### Notes
 This query can be beneficial in hunting unusual or potentially malicious activity, such as mass deletions of secrets, keys, or certificates, which could indicate insider threats, compromised accounts, or automation errors impacting critical services.  
