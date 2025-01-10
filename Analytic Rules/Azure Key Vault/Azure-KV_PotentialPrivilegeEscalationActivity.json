@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/4e2fc0f5-7282-4058-a523-6b8f1320dca0')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/4e2fc0f5-7282-4058-a523-6b8f1320dca0')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "Azure-KV | Potential Privilege Escalation Activity | Priv Esc | [Az-KV]",
+                "description": "Trigger:\nThis detection triggers when a key vault is changed from RBAC enabled to vault access, and a caller adds themselves to a vault access policy shortly after the configuration change.\n\nRisk:\nThis activity is highly suspicious and indicates a clear attempt to gain access to key vault items.",
+                "severity": "High",
+                "enabled": true,
+                "query": "AzureDiagnostics\r\n| where OperationName contains \"VaultPatch\"\r\n| where properties_enableRbacAuthorization_b == \"false\"\r\n| extend Caller_VaultConfiguration = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s\r\n| extend TimeGenerated_VaultConfiguration = TimeGenerated\r\n| project TimeGenerated_VaultConfiguration, CorrelationId, Caller_VaultConfiguration, CallerIPAddress, SubscriptionId, ResourceGroup, Resource, ResourceId\r\n| join (AzureDiagnostics\r\n    | where ResourceType == \"VAULTS\"\r\n    | where OperationName == \"VaultPatch\"\r\n    | where ResultType == \"Success\"\r\n    | extend Caller_AccessAssigned = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_name_s\r\n    | extend Caller_Id = identity_claim_http_schemas_microsoft_com_identity_claims_objectidentifier_g\r\n    | extend NewSPN = addedAccessPolicy_ObjectId_g\r\n    | where Caller_Id == NewSPN\r\n    | extend NewAccessPolicy_Key = addedAccessPolicy_Permissions_keys_s\r\n    | extend NewAccessPolicy_Secret = addedAccessPolicy_Permissions_secrets_s\r\n    | extend NewAccessPolicy_Certificate = addedAccessPolicy_Permissions_certificates_s\r\n    | extend TimeGenerated_AccessAssigned = TimeGenerated\r\n    )\r\n    on Resource\r\n| where TimeGenerated_AccessAssigned between (TimeGenerated_VaultConfiguration .. TimeGenerated_VaultConfiguration+1h)\r\n| project \r\n    TimeGenerated_VaultConfiguration,\r\n    TimeGenerated_AccessAssigned,\r\n    Caller_VaultConfiguration,\r\n    Caller_AccessAssigned, \r\n    Caller_Id, \r\n    SubscriptionId, \r\n    ResourceGroup, \r\n    Resource, \r\n    ResourceId, \r\n    NewAccessPolicy_Key, \r\n    NewAccessPolicy_Secret, \r\n    NewAccessPolicy_Certificate",
+                "queryFrequency": "PT2H",
+                "queryPeriod": "PT2H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "CredentialAccess",
+                    "Persistence",
+                    "DefenseEvasion"
+                ],
+                "techniques": [
+                    "T1555",
+                    "T1556"
+                ],
+                "subTechniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "Caller_AccessAssigned"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "AzureResource",
+                        "fieldMappings": [
+                            {
+                                "identifier": "ResourceId",
+                                "columnName": "ResourceId"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}

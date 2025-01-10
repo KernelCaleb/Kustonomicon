@@ -1,0 +1,79 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/252f25f7-81b0-4e9f-b00b-336be90f44ec')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/252f25f7-81b0-4e9f-b00b-336be90f44ec')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "Azure-KV | Large Number of Items Accessed in Short Time | Risky Event | [Az-KV]",
+                "description": "Trigger:\nThis detection triggers when a large number of key vault items are access in a short period of time from a single caller.\n\nRisk:\nThis activity can indicate potential privilege escalation and persistence activity, where the actor is attempting to find sensitive information to further their access or maintain access to target systems.",
+                "severity": "High",
+                "enabled": true,
+                "query": "let exclude_caller = dynamic(\"9aa2267e-3135-40f9-be0d-c902b62d51af\");\r\nlet VaultThreshold = 0;\r\nlet ItemThreshold = 5;\r\nlet GetOperations = dynamic([\"SecretGet\", \"KeyGet\", \"CertificateGet\"]);\r\nAzureDiagnostics\r\n| where ResourceType == \"VAULTS\" and OperationName in (GetOperations)\r\n| where clientInfo_s != \"PolicyScan-GF\"\r\n| where ResultType == \"Success\"\r\n| extend Caller = coalesce(identity_claim_unique_name_s, identity_claim_oid_g, \"UnknownCaller\")\r\n| where Caller !in (exclude_caller)\r\n| extend item = tostring(split(id_s, \"/\")[4])\r\n| summarize \r\n    DistinctVaultCount = dcount(Resource),\r\n    DistinctItemCount = dcount(item),\r\n    StartTime = min(TimeGenerated), \r\n    EndTime = max(TimeGenerated), \r\n    IPAddressSet = make_set(CallerIPAddress),  \r\n    VaultsAccessed = make_set(Resource),\r\n    ItemsAccessed = make_set(item)\r\n    by Caller, bin(TimeGenerated, 1h)\r\n| where DistinctVaultCount > VaultThreshold\r\n| where DistinctItemCount > ItemThreshold\r\n| project StartTime, EndTime, Caller, DistinctVaultCount, DistinctItemCount, IPAddressSet, VaultsAccessed, ItemsAccessed",
+                "queryFrequency": "PT1H",
+                "queryPeriod": "PT4H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "CredentialAccess"
+                ],
+                "techniques": [
+                    "T1555"
+                ],
+                "subTechniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "Caller"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "IPAddressSet"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}

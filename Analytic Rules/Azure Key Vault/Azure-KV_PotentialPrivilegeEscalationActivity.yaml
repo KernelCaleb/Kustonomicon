@@ -1,0 +1,81 @@
+﻿id: 4e2fc0f5-7282-4058-a523-6b8f1320dca0
+name: Azure-KV | Potential Privilege Escalation Activity | Priv Esc | [Az-KV]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection triggers when a key vault is changed from RBAC enabled to vault access, and a caller adds themselves to a vault access policy shortly after the configuration change.
+
+  Risk:
+  This activity is highly suspicious and indicates a clear attempt to gain access to key vault items.
+severity: High
+queryFrequency: 2h
+queryPeriod: 2h
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- CredentialAccess
+- Persistence
+- DefenseEvasion
+relevantTechniques:
+- T1555
+- T1556
+query: |-
+  AzureDiagnostics
+  | where OperationName contains "VaultPatch"
+  | where properties_enableRbacAuthorization_b == "false"
+  | extend Caller_VaultConfiguration = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s
+  | extend TimeGenerated_VaultConfiguration = TimeGenerated
+  | project TimeGenerated_VaultConfiguration, CorrelationId, Caller_VaultConfiguration, CallerIPAddress, SubscriptionId, ResourceGroup, Resource, ResourceId
+  | join (AzureDiagnostics
+      | where ResourceType == "VAULTS"
+      | where OperationName == "VaultPatch"
+      | where ResultType == "Success"
+      | extend Caller_AccessAssigned = identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_name_s
+      | extend Caller_Id = identity_claim_http_schemas_microsoft_com_identity_claims_objectidentifier_g
+      | extend NewSPN = addedAccessPolicy_ObjectId_g
+      | where Caller_Id == NewSPN
+      | extend NewAccessPolicy_Key = addedAccessPolicy_Permissions_keys_s
+      | extend NewAccessPolicy_Secret = addedAccessPolicy_Permissions_secrets_s
+      | extend NewAccessPolicy_Certificate = addedAccessPolicy_Permissions_certificates_s
+      | extend TimeGenerated_AccessAssigned = TimeGenerated
+      )
+      on Resource
+  | where TimeGenerated_AccessAssigned between (TimeGenerated_VaultConfiguration .. TimeGenerated_VaultConfiguration+1h)
+  | project 
+      TimeGenerated_VaultConfiguration,
+      TimeGenerated_AccessAssigned,
+      Caller_VaultConfiguration,
+      Caller_AccessAssigned, 
+      Caller_Id, 
+      SubscriptionId, 
+      ResourceGroup, 
+      Resource, 
+      ResourceId, 
+      NewAccessPolicy_Key, 
+      NewAccessPolicy_Secret, 
+      NewAccessPolicy_Certificate
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: Account
+  fieldMappings:
+  - identifier: FullName
+    columnName: Caller_AccessAssigned
+- entityType: AzureResource
+  fieldMappings:
+  - identifier: ResourceId
+    columnName: ResourceId
+suppressionDuration: 5h
+

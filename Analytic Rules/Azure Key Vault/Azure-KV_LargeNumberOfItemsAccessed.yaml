@@ -1,0 +1,67 @@
+﻿id: 252f25f7-81b0-4e9f-b00b-336be90f44ec
+name: Azure-KV | Large Number of Items Accessed in Short Time | Risky Event | [Az-KV]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection triggers when a large number of key vault items are access in a short period of time from a single caller.
+
+  Risk:
+  This activity can indicate potential privilege escalation and persistence activity, where the actor is attempting to find sensitive information to further their access or maintain access to target systems.
+severity: High
+queryFrequency: 1h
+queryPeriod: 4h
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- CredentialAccess
+relevantTechniques:
+- T1555
+query: |-
+  let exclude_caller = dynamic("9aa2267e-3135-40f9-be0d-c902b62d51af");
+  let VaultThreshold = 0;
+  let ItemThreshold = 5;
+  let GetOperations = dynamic(["SecretGet", "KeyGet", "CertificateGet"]);
+  AzureDiagnostics
+  | where ResourceType == "VAULTS" and OperationName in (GetOperations)
+  | where clientInfo_s != "PolicyScan-GF"
+  | where ResultType == "Success"
+  | extend Caller = coalesce(identity_claim_unique_name_s, identity_claim_oid_g, "UnknownCaller")
+  | where Caller !in (exclude_caller)
+  | extend item = tostring(split(id_s, "/")[4])
+  | summarize 
+      DistinctVaultCount = dcount(Resource),
+      DistinctItemCount = dcount(item),
+      StartTime = min(TimeGenerated), 
+      EndTime = max(TimeGenerated), 
+      IPAddressSet = make_set(CallerIPAddress),  
+      VaultsAccessed = make_set(Resource),
+      ItemsAccessed = make_set(item)
+      by Caller, bin(TimeGenerated, 1h)
+  | where DistinctVaultCount > VaultThreshold
+  | where DistinctItemCount > ItemThreshold
+  | project StartTime, EndTime, Caller, DistinctVaultCount, DistinctItemCount, IPAddressSet, VaultsAccessed, ItemsAccessed
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: Account
+  fieldMappings:
+  - identifier: FullName
+    columnName: Caller
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: IPAddressSet
+suppressionDuration: 5h
+
