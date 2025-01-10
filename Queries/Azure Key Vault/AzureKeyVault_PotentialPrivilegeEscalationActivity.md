@@ -57,8 +57,8 @@ arg('').resources
 | [T1556](https://attack.mitre.org/techniques/T1556/) | Modify Authentication Process | Credential Access, Defense Evasion, Persistence |
 
 ### Analytic Rule
-- Yaml: [Azure-KV_PotentialPrivilegeEscalation.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_PotentialPrivilegeEscalation.yaml)
-- ARM: [Azure-KV_PotentialPrivilegeEscalation.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_PotentialPrivilegeEscalation.json)
+- Yaml: [Azure-KV_PotentialPrivilegeEscalation.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_PotentialPrivilegeEscalationActivity.yaml)
+- ARM: [Azure-KV_PotentialPrivilegeEscalation.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/Azure%20Key%20Vault/Azure-KV_PotentialPrivilegeEscalationActivity.json)
 
 ### Notes
 The `vault access policy` allows for granular access, however, a privilege escalation path exists where an actor who has the `Contributor` or `Key Vault Contributor` role can grant themselves access to the vault. Monitor for a change from `Azure role-based access` to `vault access policy` may identify suspicious unwanted behavior, additionally, using the the Azure Resource Graph you can not only monitor for this change, but also identify all Key Vaults that are not using RBAC. This series of events is highly suspicious and indicates a clear attempt to gain access to key vault items.
