@@ -1,7 +1,7 @@
 # Azure Key Vault: Vault Access Configuration Modified
 
 ### Description
-This query detects when a Key Vault Access Configuration policy is changed from `Azure role-based access` to `vault access policy`. `Azure role-based access` policy is the recommended configuration of Key Vault access and allows for enhanced security, the `vault access policy` can be modified by any actor who has `Contributor` or `Key Vault Contributor` access to the Key Vault, allowing for potential privilege escalation.
+This query detects when a Key Vault Access Configuration policy is changed from `Azure role-based access` to `vault access policy`. `Azure role-based access` policy is the recommended configuration of Key Vault access and allows for enhanced security.
 
 ### Query
 ```kql

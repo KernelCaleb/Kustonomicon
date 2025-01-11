@@ -1,7 +1,7 @@
 # Azure Key Vault: Potential Privilege Escalation
 
 ### Description
-This query detects when a caller creates a vault access policy for themselves, shortly after the vault configuration access policy is changed from RBAC enabled to vault access policy. A caller with the `Key Vault Contributor` role or `Microsoft.KeyVault/vaults/write` permission can update the configuration from RBAC enabled to a vault access policy, where they can then grant themselves access to read, modify, and delete key vault items. This series of activity is highly suspicious and should be investigated.
+This query detects when a caller creates a vault access policy for themselves, shortly after the vault configuration access policy is changed from RBAC enabled to vault access policy. This series of activity is highly suspicious and should be investigated.
 
 ### Query
 ```kql
