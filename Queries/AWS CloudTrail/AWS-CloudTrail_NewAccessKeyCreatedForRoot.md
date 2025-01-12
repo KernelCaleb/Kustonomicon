@@ -20,8 +20,8 @@ AWSCloudTrail
 | [T1098.001](https://attack.mitre.org/techniques/T1098/001/) | Account Manipulation: Additional Cloud Credentials | Persistence, Privilege Escalation |
 
 ### Analytic Rule
-- Yaml: []()
-- ARM: []()
+- Yaml: [AWS_NewAccessKeyCreatedForRootUser.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/AWS%20CloudTrail/AWS_NewAccessKeyCreatedForRootUser.yaml)
+- ARM: [AWS_NewAccessKeyCreatedForRootUser.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/AWS%20CloudTrail/AWS_NewAccessKeyCreatedForRootUser.json)
 
 ### Notes
 Monitor for access keys created for your root account and immediatly remove them when detected, access keys should never be created for the root account.
