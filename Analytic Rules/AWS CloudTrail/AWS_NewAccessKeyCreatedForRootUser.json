@@ -1,0 +1,75 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/88387cd2-399e-45d4-842e-3e2cd424526a')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/88387cd2-399e-45d4-842e-3e2cd424526a')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2023-12-01-preview",
+            "properties": {
+                "displayName": "AWS | New Access Key Created for Root User | Risky Event | [AWS] [AWS-Root]",
+                "description": "Trigger:\nThis detection rule triggers when an access key is created for the root user.\n\nRisk:\nThis activity is very risk, access keys should never be used for the root user, and can indicate an attempt to maintain access to a compromised environment.\n\nResponse:\nRevoke the access key, determine if the access key was used, rotate credentials to the root user, and further investigate for any signs of compromise.",
+                "severity": "High",
+                "enabled": true,
+                "query": "AWSCloudTrail\n| where EventName == \"CreateAccessKey\"\n| where UserIdentityType == \"Root\"\n| extend AccessKeyCreated = parse_json(ResponseElements).accessKey.accessKeyId\n| project TimeGenerated, UserIdentityArn, SourceIpAddress, UserAgent, UserIdentityAccessKeyId, SessionMfaAuthenticated, SessionCreationDate, AccessKeyCreated",
+                "queryFrequency": "PT15M",
+                "queryPeriod": "PT15M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "startTimeUtc": null,
+                "tactics": [
+                    "Persistence",
+                    "DefenseEvasion",
+                    "CredentialAccess"
+                ],
+                "techniques": [
+                    "T1556",
+                    "T1098"
+                ],
+                "subTechniques": [
+                    "T1098.001"
+                ],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "IP",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Address",
+                                "columnName": "SourceIpAddress"
+                            }
+                        ]
+                    }
+                ],
+                "sentinelEntitiesMappings": null,
+                "templateVersion": null
+            }
+        }
+    ]
+}
