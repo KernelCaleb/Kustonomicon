@@ -1,0 +1,44 @@
+﻿id: 5deb3ce9-379f-4da0-822b-db7de8c2d688
+name: AWS | CloudTrail Logging Stopped | Risky Event | [AWS-CloudTrail]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection triggers when a CloudTrail log is stopped.
+
+  Risk:
+  This activity can be an indication of an adversary attempting to impair logging before initiating malicious activities.
+severity: High
+queryFrequency: 15m
+queryPeriod: 15m
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- DefenseEvasion
+relevantTechniques:
+- T1562.008
+query: |-
+  AWSCloudTrail
+  | where EventName == "StopLogging"
+  | extend Trail = parse_json(RequestParameters).name
+  | project TimeGenerated, UserIdentityArn, UserIdentityAccessKeyId, SessionMfaAuthenticated, SourceIpAddress, UserAgent, Trail
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: SourceIpAddress
+suppressionDuration: 5h
+

@@ -1,0 +1,51 @@
+﻿id: 88387cd2-399e-45d4-842e-3e2cd424526a
+name: AWS | New Access Key Created for Root User | Risky Event | [AWS] [AWS-Root]
+version: 1.0.0
+kind: Scheduled
+description: |-
+  Trigger:
+  This detection rule triggers when an access key is created for the root user.
+
+  Risk:
+  This activity is very risk, access keys should never be used for the root user, and can indicate an attempt to maintain access to a compromised environment.
+
+  Response:
+  Revoke the access key, determine if the access key was used, rotate credentials to the root user, and further investigate for any signs of compromise.
+severity: High
+queryFrequency: 15m
+queryPeriod: 15m
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- Persistence
+- DefenseEvasion
+- CredentialAccess
+relevantTechniques:
+- T1556
+- T1098.001
+query: |-
+  AWSCloudTrail
+  | where EventName == "CreateAccessKey"
+  | where UserIdentityType == "Root"
+  | extend AccessKeyCreated = parse_json(ResponseElements).accessKey.accessKeyId
+  | project TimeGenerated, UserIdentityArn, SourceIpAddress, UserAgent, UserIdentityAccessKeyId, SessionMfaAuthenticated, SessionCreationDate, AccessKeyCreated
+suppressionEnabled: false
+incidentConfiguration:
+  createIncident: true
+  groupingConfiguration:
+    enabled: false
+    reopenClosedIncident: false
+    lookbackDuration: 5h
+    matchingMethod: AllEntities
+    groupByEntities: []
+    groupByAlertDetails: []
+    groupByCustomDetails: []
+eventGroupingSettings:
+  aggregationKind: SingleAlert
+entityMappings:
+- entityType: IP
+  fieldMappings:
+  - identifier: Address
+    columnName: SourceIpAddress
+suppressionDuration: 5h
+
