@@ -18,8 +18,8 @@ AWSCloudTrail
 | [T1562.008](https://attack.mitre.org/techniques/T1562/008/) | Impair Defenses: Disable or Modify Cloud Logs | Defense Evasion |
 
 ### Analytic Rule
-- Yaml: 
-- ARM: 
+- Yaml: [AWS_CloudTrailLoggingStopped.yaml](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/AWS%20CloudTrail/AWS_CloudTrailLoggingStopped.yaml)
+- ARM: [AWS_CloudTrailLoggingStopped.json](https://github.com/KernelCaleb/Kustonomicon/blob/main/Analytic%20Rules/AWS%20CloudTrail/AWS_CloudTrailLoggingStopped.json)
 
 ### Notes
 Monitor for events where logging is stopped, erased, or interfered with, as this can be a sign of malicious activity.
