@@ -16,7 +16,8 @@ AWSCloudTrail
 ### MITRE ATT&CK
 | ID | Technique | Tactic |
 |----|-----------|--------|
-|  |  |  |
+| [T1078.004](https://attack.mitre.org/techniques/T1078/004/) | Valid Accounts: Cloud Accounts | Defense Evasion, Persistence, Privilege Escalation, Initial Access |
+| [T1110](https://attack.mitre.org/techniques/T1110/) | Brute Force | Credential Access |
 
 ### Analytic Rule
 - Yaml: 
