@@ -41,8 +41,8 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-01-17 | [AWS CloudTrail: AWS S3 - Changes to Block Public Access Settings](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20S3/AWS-CloudTrail-S3_BlockPublicAccessDisabled.md) | Detect changes to S3 public access protection settins | AWS S3 | AWSCloudTrail |
 | 2025-01-18 | [AzureActivity - NSG: Changes to Inbound Rules Allowing Management Ports](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20NSG/AzActivity-NSG_InboundRuleChangeMgmtPorts.md) | Detect when an Azure NSG rule has an inbound rule added/modified that allows access to ports 22, 3389, or * | Azure NSG | AzureActivity |
 | 2025-01-19 | [Azure Key Vault - User Adds Themselves to a Vault Access Policy](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Key%20Vault/AzureKeyVault_UserAddsThemselvesToAVaultAccessPolicy.md) | Detect when a user adds themselves to a vault access policy, a known privesc attack path | Azure Key Vault | AzureDiagnostics |
-| 2025-01-20 | ... | ... | ... | ... |
-| 2025-01-21 | ... | ... | ... | ... |
+| 2025-01-20 | [MDE: MDE Exclusion Added or Modified](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/MDE/MDE_MdeExclusionAdded.md) | Detect when an MDE exclusion is added or modified | Microsoft Defender for Endpoint | DeviceRegistryEvents, DeviceProcessEvents |
+| 2025-01-21 | [AzureActivity - VM: Password Reset through EnableAccess VM Extension](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20VM/AzActivity-VM_EnableAccessExtensionRan.md) | Detect when a VMs admin account is reset through the EnableAccess extension | Azure VM | AzureActivity |
 | 2025-01-22 | ... | ... | ... | ... |
 | 2025-01-23 | ... | ... | ... | ... |
 | 2025-01-24 | ... | ... | ... | ... |
