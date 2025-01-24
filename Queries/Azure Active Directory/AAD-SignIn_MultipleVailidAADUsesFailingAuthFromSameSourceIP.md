@@ -34,10 +34,10 @@ SigninLogs
 ### MITRE ATT&CK
 | ID | Technique | Tactic |
 |----|-----------|--------|
-| [https://attack.mitre.org/techniques/T1110/](T1110) | Brute Force | Credential Access |
-| [https://attack.mitre.org/techniques/T1110/001/](T1110.001) | Brute Force: Password Guessing | Credential Access |
-| [https://attack.mitre.org/techniques/T1110/003/](T1110.003) | Brute Force: Password Spraying | Credential Access |
-| [https://attack.mitre.org/techniques/T1110/004/](T1110.004) | Brute Force: Password Stuffing | Credential Access |
+| [T1110](https://attack.mitre.org/techniques/T1110/)| Brute Force | Credential Access |
+| [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | Brute Force: Password Guessing | Credential Access |
+| [T1110.003](https://attack.mitre.org/techniques/T1110/003/) | Brute Force: Password Spraying | Credential Access |
+| [T1110.004](https://attack.mitre.org/techniques/T1110/004/) | Brute Force: Password Stuffing | Credential Access |
 
 ### Analytic Rule
 - Yaml: []()
