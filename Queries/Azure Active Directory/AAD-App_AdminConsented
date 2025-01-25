@@ -1,0 +1,35 @@
+# Azure AD - App/OAuth: Admin Consented to Risky API Permissions
+
+### Description
+...
+
+### Query
+```kql
+let RiskyScopes = dynamic(["Mail.Read", "Mail.ReadWrite", "MailboxItem.Read"]);
+AuditLogs
+| where OperationName == "Consent to application"
+| extend InitiatedByJson = parse_json(InitiatedBy)
+| extend userPrincipalName = tostring(InitiatedByJson.user.userPrincipalName)
+| extend ipAddress = tostring(InitiatedByJson.user.ipAddress)
+| extend AdditionalDetailsJson = parse_json(AdditionalDetails)
+| extend UserAgent = AdditionalDetailsJson[0].value
+| extend ClientId = AdditionalDetailsJson[1].value
+| extend TargetResourcesJson = parse_json(TargetResources)
+| extend modifiedPropertiesJson = parse_json(TargetResourcesJson[0].modifiedProperties)
+| extend NewValue = tostring(parse_json(modifiedPropertiesJson[4]).newValue)
+| extend StartIndex = indexof(NewValue, "] => [[") + 6
+| extend ExtractedValues = substring(NewValue, StartIndex)
+| extend Scope = extract(@"Scope:\s*([^,]+)", 1, ExtractedValues)
+| project TimeGenerated, CorrelationId, userPrincipalName, ipAddress, UserAgent, ClientId, Scope
+```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
