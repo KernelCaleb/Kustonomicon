@@ -39,3 +39,4 @@ AuditLogs
 
 ### Notes
 - https://learn.microsoft.com/en-us/defender-office-365/detect-and-remediate-illicit-consent-grants
+- https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/grant-admin-consent?WT.mc_id=Portal-Microsoft_AAD_RegisteredApps&pivots=portal
