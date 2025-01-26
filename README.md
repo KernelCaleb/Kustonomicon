@@ -47,7 +47,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-01-23 | [AAD - SigninLogs: Multiple valid Microsoft Entra ID (AAD) users failing to authenticate from same source IP](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-SignIn_MultipleVailidAADUsesFailingAuthFromSameSourceIP.md) | Multiple AAD accounts with failed logins from same source IP in short time | Azure Active Directory | SigninLogs |
 | 2025-01-24 | [AAD - CAP: Conditional Access Policy Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-CAP_CAPDeleted.md) | Detect when a CAP is deleted | Azure AD - CAP | AuditLogs |
 | 2025-01-25 | [Azure AD - App/OAuth: Admin Consented to Risky API Permissions](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-App_AdminConsented) | Detect when an admin grants consent to risky api permissions on behalf of an organization | Azure AD - App/Oauth | AuditLogs |
-| 2025-01-26 | ... | ... | ... | ... |
+| 2025-01-26 | [Azure AD - SigninLogs: Large Number of Failed Logins Followed by a Successful Login to the Azure Portal](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_FailedLoginsFollowedBySuccessfulLoginToAzurePortal.md) | Successful login to Azure Portal after a series of failed logins | Azure AD | SigninLogs |
 | 2025-01-27 | ... | ... | ... | ... |
 | 2025-01-28 | ... | ... | ... | ... |
 | 2025-01-29 | ... | ... | ... | ... |
