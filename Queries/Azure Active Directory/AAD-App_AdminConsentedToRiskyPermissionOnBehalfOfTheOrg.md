@@ -24,8 +24,10 @@ AuditLogs
 | extend StartIndex = indexof(NewValue, "] => [[") + 6
 | extend ExtractedValues = substring(NewValue, StartIndex)
 | extend Scope = extract(@"Scope:\s*([^,]+)", 1, ExtractedValues)
+| extend OnBehalfOfAll = trim('"', tostring(parse_json(modifiedPropertiesJson[2]).newValue))
+| where OnBehalfOfAll == "True"
 | where Scope has_any (RiskyScopes)
-| project TimeGenerated, CorrelationId, userPrincipalName, ipAddress, UserAgent, ClientId, Scope
+| project TimeGenerated, CorrelationId, userPrincipalName, ipAddress, UserAgent, ClientId, Scope, OnBehalfOfAll
 ```
 
 ### MITRE ATT&CK
