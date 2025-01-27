@@ -5,7 +5,6 @@ This query detects when a new Trusted Location has been created.
 
 ### Query
 ```kql
-```kql
 AuditLogs
 | where OperationName == "Add named location"
 | extend Caller = InitiatedBy.user.userPrincipalName
@@ -20,7 +19,6 @@ AuditLogs
 | extend isTrusted = tostring(parsedNewValue.isTrusted)
 | where isTrusted == "true"
 | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, displayName, cidrAddress, isTrusted
-```
 ```
 
 ### MITRE ATT&CK
