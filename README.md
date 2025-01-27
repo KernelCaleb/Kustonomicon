@@ -43,11 +43,11 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-01-19 | [Azure Key Vault - User Adds Themselves to a Vault Access Policy](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Key%20Vault/AzureKeyVault_UserAddsThemselvesToAVaultAccessPolicy.md) | Detect when a user adds themselves to a vault access policy, a known privesc attack path | Azure Key Vault | AzureDiagnostics |
 | 2025-01-20 | [MDE: MDE Exclusion Added or Modified](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/MDE/MDE_MdeExclusionAdded.md) | Detect when an MDE exclusion is added or modified | Microsoft Defender for Endpoint | DeviceRegistryEvents, DeviceProcessEvents |
 | 2025-01-21 | [AzureActivity - VM: Password Reset through EnableAccess VM Extension](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20VM/AzActivity-VM_EnableAccessExtensionRan.md) | Detect when a VMs admin account is reset through the EnableAccess extension | Azure VM | AzureActivity |
-| 2025-01-22 | ... | ... | ... | ... |
-| 2025-01-23 | ... | ... | ... | ... |
-| 2025-01-24 | ... | ... | ... | ... |
-| 2025-01-25 | ... | ... | ... | ... |
-| 2025-01-26 | ... | ... | ... | ... |
+| 2025-01-22 | [AzureActivity - VM: Azure Run Command Started on VM](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20VM/AzActivity-VM_AzureRunCommandStarted.md) | Detect when the Run Command is started on a VM | Azure VM | AzureActivity |
+| 2025-01-23 | [AAD - SigninLogs: Multiple valid Microsoft Entra ID (AAD) users failing to authenticate from same source IP](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-SignIn_MultipleVailidAADUsesFailingAuthFromSameSourceIP.md) | Multiple AAD accounts with failed logins from same source IP in short time | Azure Active Directory | SigninLogs |
+| 2025-01-24 | [AAD - CAP: Conditional Access Policy Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-CAP_CAPDeleted.md) | Detect when a CAP is deleted | Azure AD - CAP | AuditLogs |
+| 2025-01-25 | [Azure AD - App/OAuth: Admin Consented to Risky API Permissions](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-App_AdminConsented) | Detect when an admin grants consent to risky api permissions on behalf of an organization | Azure AD - App/Oauth | AuditLogs |
+| 2025-01-26 | [Azure AD - SigninLogs: Large Number of Failed Logins Followed by a Successful Login to the Azure Portal](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_FailedLoginsFollowedBySuccessfulLoginToAzurePortal.md) | Successful login to Azure Portal after a series of failed logins | Azure AD | SigninLogs |
 | 2025-01-27 | ... | ... | ... | ... |
 | 2025-01-28 | ... | ... | ... | ... |
 | 2025-01-29 | ... | ... | ... | ... |
