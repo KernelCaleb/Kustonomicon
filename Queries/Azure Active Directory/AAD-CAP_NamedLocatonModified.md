@@ -1,3 +1,9 @@
+# Azure AD - CAP: Named Location Modified
+
+### Description
+This query detects when a Named Location is modified, such as a new IP range is added to the Named Location.
+
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Update named location"
@@ -11,3 +17,14 @@ AuditLogs
 | extend newValue = modifiedProperties.newValue
 | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, NamedLocation, oldValue, newValue
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
