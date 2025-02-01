@@ -26,7 +26,7 @@ AzureActivity
 | ID | Technique | Tactic |
 |----|-----------|--------|
 | [T1098.003](https://attack.mitre.org/techniques/T1098/003/) | Account Manipulation: Additional Cloud Roles | Persistence, Privilege Escalation |
-| [T548](https://attack.mitre.org/techniques/T1548/) | Abuse Elevation Control Mechanism | Privilege Escalation, Defense Evasion |
+| [T1548](https://attack.mitre.org/techniques/T1548/) | Abuse Elevation Control Mechanism | Privilege Escalation, Defense Evasion |
 
 ### Analytic Rule
 - Yaml: []()

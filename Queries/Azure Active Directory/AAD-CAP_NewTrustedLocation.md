@@ -24,7 +24,7 @@ AuditLogs
 ### MITRE ATT&CK
 | ID | Technique | Tactic |
 |----|-----------|--------|
-|    |           |        |
+| [T1556.009](https://attack.mitre.org/techniques/T1556/009/) | Modify Authentication Process: Conditional Access Policies | Credential Access, Defense Evasion, Presistence |
 
 ### Analytic Rule
 - Yaml: []()
