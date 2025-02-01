@@ -8,13 +8,13 @@ Azure Diagnostic Settings are critical for logging security events, monitoring p
 ### Query
 ```kql
 AzureActivity
-| where OperationNameValue contains "MICROSOFT.INSIGHTS/DIAGNOSTICSETTINGS"
+| where OperationNameValue contains "MICROSOFT.INSIGHTS/DIAGNOSTICSETTINGS/DELETE"
 | where ActivityStatusValue == "Start"
 | extend props = parse_json(Properties)
-| extend message = props.message
+//| extend message = props.message
 | extend entity = props.entity
 | extend resource = props.resource
-| where message contains "delete"
+//| where message contains "delete"
 | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, SubscriptionId, ResourceGroup, resource, entity
 ```
 
