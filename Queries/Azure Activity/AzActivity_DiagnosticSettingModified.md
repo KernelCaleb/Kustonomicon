@@ -6,7 +6,7 @@ This query detects when an Azure resource's diagnostic setting has been deleted.
 Azure Diagnostic Settings are critical for logging security events, monitoring performance, and maintaining compliance. If an attacker or unauthorized user deletes these settings, it can prevent security teams from detecting malicious activity, making it a defense evasion technique.
 
 ### Query
-```
+```kql
 AzureActivity
 | where OperationNameValue contains "MICROSOFT.INSIGHTS/DIAGNOSTICSETTINGS/WRITE"
 | where ActivityStatusValue == "Success"
