@@ -1,4 +1,4 @@
-# Name
+# Azure Activity - VM: Disk Exported Through SAS URL
 
 ### Description
 This query detects when a SAS URL to download a VM disk is generated. Adversarys may create a SAS URL to download disks. Ensure this action was legitimate and executed by an authorized administrator.
