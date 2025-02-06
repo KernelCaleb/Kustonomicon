@@ -1,7 +1,7 @@
 # Azure Activity - VM: Multiple VMs Deleted in a Short Period of Time by Single Caller
 
 ### Description
-This query detects when a single caller deletes a large number of VMs in a short period of time.
+This query detects when a single caller deletes a large number of VMs in a short period of time, 1 hour.
 
 ### Query
 ```kql
