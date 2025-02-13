@@ -1,4 +1,4 @@
-```
+```kql
 AuditLogs
 | where OperationName == "Add member to role"
 | extend parse_TargetResources = parse_json(TargetResources)
