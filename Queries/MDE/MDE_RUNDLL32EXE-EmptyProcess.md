@@ -1,7 +1,6 @@
 ```kql
 DeviceProcessEvents
 | where FileName =~ "rundll32.exe"
-| where isempty(ProcessCommandLine)
-| project Timestamp, DeviceName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine
-| order by Timestamp desc
+| where ProcessCommandLine == '"rundll32.exe"' or isempty(ProcessCommandLine)
+| project Timestamp, DeviceName, ActionType, FileName, FolderPath, ProcessCommandLine, ProcessId, ProcessIntegrityLevel, ProcessCreationTime, AccountName, InitiatingProcessFileName, InitiatingProcessFolderPath
 ```
