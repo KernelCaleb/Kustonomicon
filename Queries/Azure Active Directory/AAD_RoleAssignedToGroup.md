@@ -1,3 +1,9 @@
+# Azure AD - PIM: Role Assigned to Group
+
+### Description
+This query detects when an Azure AD role has been assigned to a group.
+
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Add member to role"
@@ -16,3 +22,14 @@ AuditLogs
     CallerIpAddress = parse_InitiatedBy.user.ipAddress
 | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, Target_DisplayName, RoleDisplayName, RoleTemplateId
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
