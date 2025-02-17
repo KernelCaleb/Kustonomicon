@@ -1,3 +1,9 @@
+# Azure AD: Administrator Password Reset by Another Administrator
+
+### Description
+This query detects when 
+
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Reset password (by admin)"
@@ -14,3 +20,14 @@ AuditLogs
 ) on $left.TargetUPN == $right.AccountUPN
 | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, TargetUPN, AssignedRoles
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
