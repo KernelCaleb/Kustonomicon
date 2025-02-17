@@ -1,3 +1,9 @@
+# Azure Activity - ST: Storage Account Container Deleted
+
+### Description
+This query detects when a Storage Account Container is deleted.
+
+### Query
 ```kql
 AzureActivity
 | where OperationNameValue == "MICROSOFT.STORAGE/STORAGEACCOUNTS/BLOBSERVICES/CONTAINERS/DELETE"
@@ -10,3 +16,14 @@ AzureActivity
 | extend Container = array[2]
 | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, SubscriptionId, ResourceGroup, StorageAccount, Container, entity
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
