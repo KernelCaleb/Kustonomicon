@@ -1,3 +1,9 @@
+# Azure Activity - Firewall: Firewall Policy Updated
+
+### Description
+This query detects when an Azure Firewall Policy Is Modified
+
+### Query
 ```kql
 AzureActivity
 | where OperationNameValue contains "MICROSOFT.NETWORK/AZUREFIREWALLS/WRITE"
@@ -8,3 +14,14 @@ AzureActivity
 | extend AzureFirewallPolicyId = tostring(requestBodyJson.properties.firewallPolicy.id)
 | project TimeGenerated, CorrelationId, Caller, CallerIpAddress, AzureFirewallPolicyId
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
