@@ -66,8 +66,8 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-11 | [**UPDATE ME** Azure AD: Successful Sign-In from BG Account](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_SuccessfulSigninFromBGAccount.md) | This query detects when there is successful sign-in from a BG account | Azure AD | SigninLogs |
 | 2025-02-12 | [Azure AD: Administrator Password Reset by Another Administrator](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_AdminResetPasswordForAnotherAdmin.md) | This query detects when an administrator changes the password of another administrator | Azure AD | AuditLogs |
 | 2025-02-13 | [Azure AD - PIM: Role Assigned to Group](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_RoleAssignedToGroup.md) | This query detects when an Azure AD role has been assigned to a gorup | Azure AD - PIM | AuditLogs |
-| 2025-02-14 | ... | ... | ... | ... |
-| 2025-02-15 | ... | ... | ... | ... |
+| 2025-02-14 | [Azure Activity - Security Insights: Alert Rule Modified](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Security%20Insights/AzActivity-Security_AnalyticRuleModified.md) | This query detects when an Alert Rule or Analytic Rule has been modified | Azure Acitivity - Security Insights | AzureActivity |
+| 2025-02-15 | [Azure Activity - Security Insights: Alert Rule Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Security%20Insights/AzActivity-Security_AnalyticRuleDeleted.md) | This query detects when an Alert Rule or Analytic Rule has been deleted | Azure Acitivity - Security Insights | AzureActivity |
 | 2025-02-16 | ... | ... | ... | ... |
 | 2025-02-17 | ... | ... | ... | ... |
 | 2025-02-18 | ... | ... | ... | ... |
