@@ -56,7 +56,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-01 | [Azure Activity: Privileged Role Assigned to Resource](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity-RBAC_PrivilegedRoleAssigned.md) | This query detects when a built-in privileged Azure RBAC role has been assigned | Azure Activity - RBAC | AzureActivity |
 | 2025-02-02 | [Azure Activity: Privileged Role Assigned to Subscription](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity-RBAC_PrivilegedRoleAssignedToSubscription.md) | This query detects when a principal is assigned a privileged built-in role to an Azure subscription | Azure AD - Roles | AzureActivity |
 | 2025-02-03 | [Azure Activity - Firewall: Firewall Policy Updated](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Azure%20Firewall/AzActivity-AFW_AzureFirewallPolicyUpdated.md) | This query detects when an Azure Firewall policy is modified | Azure Firewall | AzureActivity |
-| 2025-02-04 | ... | ... | ... | ... |
+| 2025-02-04 | [Azure AD: Risky Sign-In to Azure Portal](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_RiskySigninToAzurePortal.md) | This query detects when there is a risky sign-in to the Azure Portal | AAD Identity Protection | SigninLogs |
 | 2025-02-05 | ... | ... | ... | ... |
 | 2025-02-06 | ... | ... | ... | ... |
 | 2025-02-07 | ... | ... | ... | ... |
