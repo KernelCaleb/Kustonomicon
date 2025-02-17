@@ -58,7 +58,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-03 | [Azure Activity - Firewall: Firewall Policy Updated](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Azure%20Firewall/AzActivity-AFW_AzureFirewallPolicyUpdated.md) | This query detects when an Azure Firewall policy is modified | Azure Firewall | AzureActivity |
 | 2025-02-04 | [Azure AD: Risky Sign-In to Azure Portal](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_RiskySigninToAzurePortal.md) | This query detects when there is a risky sign-in to the Azure Portal | AAD Identity Protection | SigninLogs |
 | 2025-02-05 | [Azure Activity - VM: Multiple VMs Deleted in a Short Period of Time by Single Caller](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20VM/AzActivity-VM_MultipleVMsDeletedByCallerInShortTime.md) | This query detects when a single caller deletes a large number of VMs in a short period of time, 1 hour | Azure VMs | AzureActivity |
-| 2025-02-06 | ... | ... | ... | ... |
+| 2025-02-06 | [Azure Activity - VM: Disk Exported Through SAS URL](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20VM/AzActivity-VM_DiskExportSASURLGenerated.md) | This query detects when a SAS URL to download a VM disk is generated | Azure VMs | AzureActivity |
 | 2025-02-07 | ... | ... | ... | ... |
 | 2025-02-08 | ... | ... | ... | ... |
 | 2025-02-09 | ... | ... | ... | ... |
