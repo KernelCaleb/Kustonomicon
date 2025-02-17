@@ -65,7 +65,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-10 | [**UPDATE ME** AAD - PIM: Privileged AD Role Assigned to Principal](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-PIM_PrivilegedRoleAssignedToPrincipal.md) | This query will detect when a privileged Azure AD role has been assigned to a principal | AAD PIM | AuditLogs |
 | 2025-02-11 | [**UPDATE ME** Azure AD: Successful Sign-In from BG Account](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_SuccessfulSigninFromBGAccount.md) | This query detects when there is successful sign-in from a BG account | Azure AD | SigninLogs |
 | 2025-02-12 | [Azure AD: Administrator Password Reset by Another Administrator](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_AdminResetPasswordForAnotherAdmin.md) | This query detects when an administrator changes the password of another administrator | Azure AD | AuditLogs |
-| 2025-02-13 | ... | ... | ... | ... |
+| 2025-02-13 | [Azure AD - PIM: Role Assigned to Group](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_RoleAssignedToGroup.md) | This query detects when an Azure AD role has been assigned to a gorup | Azure AD - PIM | AuditLogs |
 | 2025-02-14 | ... | ... | ... | ... |
 | 2025-02-15 | ... | ... | ... | ... |
 | 2025-02-16 | ... | ... | ... | ... |
