@@ -61,7 +61,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-06 | [Azure Activity - VM: Disk Exported Through SAS URL](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20VM/AzActivity-VM_DiskExportSASURLGenerated.md) | This query detects when a SAS URL to download a VM disk is generated | Azure VMs | AzureActivity |
 | 2025-02-07 | [Azure Activity - NSG: NSG Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20NSG/AzActivity-NSG_NSGDeleted.md) | This query detects when a NSG is deleted | Azure Network - NSG | AzureActivity |
 | 2025-02-08 | [Azure Activity - NIC: NIC Modified](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20NIC/AzActivity-NIC_NICModified.md) | This query detects when a NIC is modified | Network Interfaces | AzureActivity |
-| 2025-02-09 | ... | ... | ... | ... |
+| 2025-02-09 | [Azure Activity - ST: Storage Account Container Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Storage/AzActivity-ST_ContainerDeleted.md) | This query detects when a Storage Account Container is deleted | Storage Account | AzureActivity |
 | 2025-02-10 | ... | ... | ... | ... |
 | 2025-02-11 | ... | ... | ... | ... |
 | 2025-02-12 | ... | ... | ... | ... |
