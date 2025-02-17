@@ -1,7 +1,7 @@
 # Azure AD: Administrator Password Reset by Another Administrator
 
 ### Description
-This query detects when 
+This query detects when an administrator changes the password for another administrator.
 
 ### Query
 ```kql
