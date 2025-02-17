@@ -68,7 +68,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-13 | [Azure AD - PIM: Role Assigned to Group](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_RoleAssignedToGroup.md) | This query detects when an Azure AD role has been assigned to a gorup | Azure AD - PIM | AuditLogs |
 | 2025-02-14 | [Azure Activity - Security Insights: Alert Rule Modified](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Security%20Insights/AzActivity-Security_AnalyticRuleModified.md) | This query detects when an Alert Rule or Analytic Rule has been modified | Azure Acitivity - Security Insights | AzureActivity |
 | 2025-02-15 | [Azure Activity - Security Insights: Alert Rule Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Security%20Insights/AzActivity-Security_AnalyticRuleDeleted.md) | This query detects when an Alert Rule or Analytic Rule has been deleted | Azure Acitivity - Security Insights | AzureActivity |
-| 2025-02-16 | ... | ... | ... | ... |
+| 2025-02-16 | [MDE: RUNDLL32.EXE With Empty Process Command Line](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/MDE/MDE_RUNDLL32EXE-EmptyProcess.md) | This query detects when rundll32.exe is ran with an empty process command line | MDE | DeviceProcessEvents |
 | 2025-02-17 | ... | ... | ... | ... |
 | 2025-02-18 | ... | ... | ... | ... |
 | 2025-02-19 | ... | ... | ... | ... |
