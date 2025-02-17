@@ -1,7 +1,7 @@
-# Name
+# Azure Activity - NSG: NSG Deleted
 
 ### Description
-...
+This query detects when an NSG is deleted.
 
 ### Query
 ```kql
