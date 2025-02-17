@@ -53,8 +53,8 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-01-29 | [Azure AD - CAP: Trusted Location Modified](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-CAP_TrustedLocationModified.md) | This query detects when a trusted location has been modified or a standard named location has been set as trusted | Azure AD - CAP | AuditLogs |
 | 2025-01-30 | [Azure Activity: Diagnostic Setting Deleted)](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity_DiagnosticSettingDeleted.md) | This query detects when an Azure resource's diagnostic settings have been deleted | Azure Activity - Insights | AzureActivity |
 | 2025-01-31 | [Azure Activity: Diagnostic Setting Modified](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity_DiagnosticSettingModified.md) | This query detects when an Azure resource's diagnostic settings have been modified | Azure Activity - Insights | AzureActivity |
-| 2025-02-01 | [Azure Activity: Privileged Role Assigned to Resource](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity-RBAC_PrivilegedRoleAssigned.md) | This query detects when a built-in privileged Azure RBAC role has been assigned | Azure Activit - RBAC | AzureActivity |
-| 2025-02-02 | ... | ... | ... | ... |
+| 2025-02-01 | [Azure Activity: Privileged Role Assigned to Resource](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity-RBAC_PrivilegedRoleAssigned.md) | This query detects when a built-in privileged Azure RBAC role has been assigned | Azure Activity - RBAC | AzureActivity |
+| 2025-02-02 | [Azure Activity: Privileged Role Assigned to Subscription](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity-RBAC_PrivilegedRoleAssignedToSubscription.md) | This query detects when a principal is assigned a privileged built-in role to an Azure subscription | Azure AD - Roles | AzureActivity |
 | 2025-02-03 | ... | ... | ... | ... |
 | 2025-02-04 | ... | ... | ... | ... |
 | 2025-02-05 | ... | ... | ... | ... |
