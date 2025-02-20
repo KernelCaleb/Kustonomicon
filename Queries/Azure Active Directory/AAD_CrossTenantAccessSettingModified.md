@@ -1,3 +1,9 @@
+# AAD: Cross Tenant Access Settings Modified
+
+### Description
+This query detects when a Cross Tenant Access settings has been modified.
+
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Update a partner cross-tenant access setting"
@@ -9,3 +15,14 @@ AuditLogs
 | extend CallerIpAddress = parse_InitiatedBy.user.ipAddress
 | project TimeGenerated, OperationName, CorrelationId, Caller, CallerIpAddress, ModifiedProperties
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
