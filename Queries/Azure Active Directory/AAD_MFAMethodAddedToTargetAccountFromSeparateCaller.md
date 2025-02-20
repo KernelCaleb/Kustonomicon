@@ -1,3 +1,9 @@
+# AAD - MFA: Caller Adds MFA Method to Target Account
+
+### Description
+This query detects when a caller adds an MFA method to a separate target account.
+
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Admin registered security info"
@@ -14,3 +20,14 @@ AuditLogs
 | where Caller != Target
 | project TimeGenerated, CorrelationId, OperationName, ResultDescription, Caller, CallerIpAddress, Target, AuthMethodId, AuthType, PhoneNumber
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
