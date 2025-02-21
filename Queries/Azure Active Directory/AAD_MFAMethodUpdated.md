@@ -1,3 +1,9 @@
+# AAD: Admin Modified MFA Method (phone)
+
+### Description
+This query detects when an administrator changes the phone based MFA method for a target account.
+
+### Query
 ```kql
 AuditLogs
 | where OperationName == "Admin updated security info"
@@ -14,3 +20,14 @@ AuditLogs
 | where Caller != Target
 | project TimeGenerated, CorrelationId, OperationName, ResultDescription, Caller, CallerIpAddress, Target, AuthNumberOld, AuthNumberNew
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
