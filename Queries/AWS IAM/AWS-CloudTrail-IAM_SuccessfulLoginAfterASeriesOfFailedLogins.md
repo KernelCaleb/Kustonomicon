@@ -1,3 +1,9 @@
+# AWS - IAM: Successful Login After a Series of Failed Logins
+
+### Description
+...
+
+### Query
 ```kql
 let FailedLogins = AWSCloudTrail
 | where EventName == "CredentialVerification"
@@ -21,3 +27,14 @@ AWSCloudTrail
 | where SuccessfulLoginTime - LastFailedLoginTime <= 1h
 | project UserIdentityUserName, FailedLoginCount, IPs, UserAgents, LastFailedLoginTime, SuccessfulLoginTime
 ```
+
+### MITRE ATT&CK
+| ID | Technique | Tactic |
+|----|-----------|--------|
+|    |           |        |
+
+### Analytic Rule
+- Yaml: []()
+- ARM: []()
+
+### Notes
