@@ -1,5 +1,5 @@
 ```kql
 SigninLogs
 | where AuthenticationProtocol == "deviceCode"
-| summarize by AppDisplayName, UserId
+| project TimeGenerated, CorrelationId, AuthenticationProtocol, UserPrincipalName, IPAddress, UserAgent, AppDisplayName, AppId
 ```
