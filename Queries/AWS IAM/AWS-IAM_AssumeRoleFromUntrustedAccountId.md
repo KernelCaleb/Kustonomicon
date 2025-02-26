@@ -1,7 +1,7 @@
-# Name
+# AWS - IAM: Assume Role From Untrusted Account
 
 ### Description
-...
+This query searches for `AssumeRole` events where the calling account is considered untrusted.
 
 ### Query
 ```kql
