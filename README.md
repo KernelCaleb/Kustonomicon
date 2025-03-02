@@ -81,7 +81,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-26 | ... | ... | ... | ... |
 | 2025-02-27 | ... | ... | ... | ... |
 | 2025-02-28 | ... | ... | ... | ... |
-| 2025-03-01 | ... | ... | ... | ... |
+| 2025-03-01 | [AWS - IAM: STS Get-Caller-Identity from the AWS CLI](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_GetCallerIdentityFromCLI.md) | This query detects when aws sts get-caller-identity is executed from the AWS CLI | AWS IAM | AWSCloudTrail |
 | 2025-03-02 | ... | ... | ... | ... |
 | 2025-03-03 | ... | ... | ... | ... |
 | 2025-03-04 | ... | ... | ... | ... |
