@@ -11,3 +11,5 @@ AWSCloudTrail
     FederatedUserId = parse_ResponseElements.federatedUser.federatedUserId
 | project TimeGenerated, EventName, UserIdentityArn, SourceIpAddress, UserAgent, FederatedUserArn, FederatedUserId, FederatedUserName, AccessKeyId, SessionToken
 ```
+
+- https://www.crowdstrike.com/en-us/blog/how-adversaries-persist-with-aws-user-federation/
