@@ -1,0 +1,17 @@
+# Kusto
+
+#### What is Kusto?
+Kusto is a query language created by Microsoft primarily for querying big data in Azure services. It powers Azure Data Explorer and is also used in services like Azure Monitor, Azure Sentinel, and Azure Log Analytics.
+Kusto Query Language (KQL) is designed to be readable, efficient for large datasets, and supports complex operations like joins, aggregations, and string manipulations. It's particularly useful for analyzing telemetry, logs, and time-series data.
+
+## Fundamentals
+...
+
+## Basic Operators
+...
+
+## Joins
+...
+
+## Fun Facts
+- Named after `Jacques Cousteau` as a reference to "exploring the ocean of data"
