@@ -82,20 +82,20 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-02-27 | ... | ... | ... | ... |
 | 2025-02-28 | ... | ... | ... | ... |
 | 2025-03-01 | [AWS - IAM: STS Get-Caller-Identity from the AWS CLI](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_GetCallerIdentityFromCLI.md) | This query detects when aws sts get-caller-identity is executed from the AWS CLI | AWS IAM | AWSCloudTrail |
-| 2025-03-02 | ... | ... | ... | ... |
-| 2025-03-03 | ... | ... | ... | ... |
-| 2025-03-04 | ... | ... | ... | ... |
-| 2025-03-05 | ... | ... | ... | ... |
-| 2025-03-06 | ... | ... | ... | ... |
-| 2025-03-07 | ... | ... | ... | ... |
-| 2025-03-08 | ... | ... | ... | ... |
-| 2025-03-09 | ... | ... | ... | ... |
-| 2025-03-10 | ... | ... | ... | ... |
-| 2025-03-11 | ... | ... | ... | ... |
-| 2025-03-12 | ... | ... | ... | ... |
-| 2025-03-13 | ... | ... | ... | ... |
-| 2025-03-14 | ... | ... | ... | ... |
-| 2025-03-15 | ... | ... | ... | ... |
+| 2025-03-02 | [AWS IAM: Access Key Created and Deleted in Short Period of Time](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_AccessKeyCreatedAndDeletedInShortPeriodOfTime.md) | ... | AWS IAM | AWSCloudTrail |
+| 2025-03-03 | [AWS IAM: Access Key Created](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_AccessKeyCreated.md) | ... | AWS IAM | AWSCloudTrail |
+| 2025-03-04 | [AWS IAM: Access Key Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_AccesKeyDeleted.md) | ... | AWS IAM | Access Key Deleted |
+| 2025-03-05 | [AWS IAM: Large Volume of Access Keys Created in Short Time](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_LargeVolumeOfAccessKeysCreatedInShortWindowOfTime.md) | ... | AWS IAM | AWSCloudTrail |
+| 2025-03-06 | [AWS EC2: EC2 Instanced Exported to S3](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20EC2/AWS-CloudTrail-EC2_EC2InstanceExportedToS3.md) | ... | AWS EC2 | AWSCloudTrail |
+| 2025-03-07 | [AWS EC2: Unsanctioned EC2 Type Created](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20EC2/AWS-CloudTrail-EC2_UnsanctionedEC2TypeCreated.md) | ... | AWS EC2 | AWSCloudTrail |
+| 2025-03-08 | [AWS VPC: Security Group Deleted](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20VPC/AWS-CloudTrail-VPC_SecurityGroupDeleted.md) | ... | AWS VPC | AWSCloudTrail |
+| 2025-03-09 | [AWS VPC: VPC With Suspicious Name Created (IOC)](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20VPC/AWS-CloudTrail-VPC_IOCSecurityGroupCreated.md) | ... | AWS VPC | AWSCloudTrail |
+| 2025-03-10 | [AWS IAM: Federated User Created](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_FederatedUserCreated.md) | ... | AWS IAM | AWSCloudTrail |
+| 2025-03-11 | [AWS IAM: Actions From Federated User](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20IAM/AWS-CloudTrail-IAM_ActionsFromFederatedUser.md) | ... | AWS IAM | AWSCloudTrail |
+| 2025-03-12 | [AWS RDS: Snapshot Taken](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20RDS/AWS-CloudTrail-RDS_RDSSnapshotTaken.md) | ... | AWS RDS | AWSCloudTrail |
+| 2025-03-13 | [AWS RDS: Snaptshot Exported to S3](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20RDS/AWS-CloudTrail-RDS_RDSSnapshotExportedToS3.md) | ... | AWS RDS | AWSCloudTrail |
+| 2025-03-14 | [AWS Secrets Manager: Large Number of Secrets Accessed in Short Time](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20Secrets%20Manager/AWS-CloudTrail-SecretsManager_LargeNumberOfSecretsAccessedInShortTime.md) | ... | AWS Secrets Manager | AWSCloudTrail |
+| 2025-03-15 | [AWS Secrets Manager: Large Number of Secrets Deleted in Short Time](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20Secrets%20Manager/AWS-CloudTrail-SecretsManager_LargeNumberOfSecretsDeletedInShortTime.md) | ... | AWS Secrets Manager | AWSCloudTrail |
 | 2025-03-16 | ... | ... | ... | ... |
 | 2025-03-17 | [Azure AD: BitLocker Key Accessed](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_BitLockerKeyAccessed.md) | BitLocker Key Accessed | Azure AD | AuditLogs |
 | 2025-03-18 | [Azure Storage: Storage Account Key Accessed](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity%20-%20Storage/AzActivity-ST_StorageAccountKeysAccessed.md) | Azure Storage Account Key accessed | Azure Storage | AzureActivity |
