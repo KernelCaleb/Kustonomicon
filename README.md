@@ -100,9 +100,9 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-03-17 | ... | ... | ... | ... |
 | 2025-03-18 | ... | ... | ... | ... |
 | 2025-03-19 | ... | ... | ... | ... |
-| 2025-03-20 | ... | ... | ... | ... |
+| 2025-03-20 | [SSM Document Ran on Multiple EC2 Instances](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20SSM/AWS-CloudTrail-SSM_SSMDocumentRanOnMultipleInstances.md) | An SSM Document was ran on multiple EC2 instances | AWS SSM | AWSCloudTrail |
 | 2025-03-21 | ... | ... | ... | ... |
-| 2025-03-22 | ... | ... | ... | ... |
+| 2025-03-22 | [SSM Document Ran but Not Ran in Previous 90 Days](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20SSM/AWS-CloudTrail-SSM_SSMDocumentRanButNotSeenInLast90Days.md) | An SSM Document was ran within the past 1 day, but has not been run within the previous 90 days | AWS SSM | AWSCloudTrail |
 | 2025-03-23 | ... | ... | ... | ... |
 | 2025-03-24 | ... | ... | ... | ... |
 | 2025-03-25 | ... | ... | ... | ... |
