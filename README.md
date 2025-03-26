@@ -105,7 +105,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-03-22 | [SSM Document Ran but Not Ran in Previous 90 Days](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20SSM/AWS-CloudTrail-SSM_SSMDocumentRanButNotSeenInLast90Days.md) | An SSM Document was ran within the past 1 day, but has not been run within the previous 90 days | AWS SSM | AWSCloudTrail |
 | 2025-03-23 | [AWS SSM: SSM Document Ran](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20SSM/AWS-CloudTrail-SSM_SSMDocumentRan.md) | ... | AWS SSM | AWSCloudTrail |
 | 2025-03-24 | ... | ... | ... | ... |
-| 2025-03-25 | ... | ... | ... | ... |
+| 2025-03-25 | [AAD: Role Assigned to Guest](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_RoleAssignedToGuest.md) | ... | Azure AD | AuditLogs |
 | 2025-03-26 | ... | ... | ... | ... |
 | 2025-03-27 | ... | ... | ... | ... |
 | 2025-03-28 | ... | ... | ... | ... |
