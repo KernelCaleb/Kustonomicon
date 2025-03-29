@@ -109,7 +109,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-03-26 | [AAD: Find Uncommon User-Agent in Sign-In Logs](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_FindUncommonUserAgent.md) | ... | Azure AD | SignInLogs |
 | 2025-03-27 | [Azure Activity: API Call from IP Not Seen in Previous 90 Days](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivity_EventsFromIPNotSeenInPrevious90Days.md) | ... | Azure API | AzureActivity |
 | 2025-03-28 | ... | ... | ... | ... |
-| 2025-03-29 | ... | ... | ... | ... |
+| 2025-03-29 | [AWS CloudTrail: API Call from IP Not Seen in Previous 90 Days](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20CloudTrail/AWS-CloudTrail_NewIPNotSeenInPrevious90Days.md) | ... | AWS CloudTrail | AWSCloudTrail |
 | 2025-03-30 | ... | ... | ... | ... |
 | 2025-03-31 | ... | ... | ... | ... |
 | 2025-04-01 | ... | ... | ... | ... |
