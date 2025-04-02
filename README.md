@@ -112,7 +112,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-03-29 | [AWS CloudTrail: API Call from IP Not Seen in Previous 90 Days](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20CloudTrail/AWS-CloudTrail_NewIPNotSeenInPrevious90Days.md) | ... | AWS CloudTrail | AWSCloudTrail |
 | 2025-03-30 | [AWS CloudTrail: API Call from User-Agent Not Seen in Previous 90 days](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/AWS%20CloudTrail/AWS-CloudTrail_NewUserAgentNotSeenInPrevious90Days.md) | ... | AWS CloudTrail | AWSCloudTrail |
 | 2025-03-31 | ... | ... | ... | ... |
-| 2025-04-01 | ... | ... | ... | ... |
+| 2025-04-01 | [Azure AD: Failed SSPR](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_SSPR.md) | ... | Azure AD | AuditLogs |
 | 2025-04-02 | ... | ... | ... | ... |
 | 2025-04-03 | ... | ... | ... | ... |
 | 2025-04-04 | ... | ... | ... | ... |
