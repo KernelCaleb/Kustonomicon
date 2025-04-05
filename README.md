@@ -116,7 +116,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-04-02 | ... | ... | ... | ... |
 | 2025-04-03 | [Azure AD - AuditLogs: Owner Added to App](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-AudtLogs_OwnerAddedToApp.md) | ... | Azure AD | AuditLogs |
 | 2025-04-04 | [Azure AD - AuditLogs: Guest Account Added as App Owner](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-AuditLogs_GuestAccountAddedToAppOwner.md) | ... | Azure AD | AuditLogs |
-| 2025-04-05 | ... | ... | ... | ... |
+| 2025-04-05 | [Azure AD - AuditLogs: Privileged Role Assigned to External Guest Account](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-AuditLogs_PrivilegedRoleAssignedToExternalGuest.md) | ... | Azure AD | AuditLogs |
 | 2025-04-06 | ... | ... | ... | ... |
 | 2025-04-07 | ... | ... | ... | ... |
 | 2025-04-08 | ... | ... | ... | ... |
