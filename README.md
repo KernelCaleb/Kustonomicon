@@ -114,8 +114,8 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-03-31 | ... | ... | ... | ... |
 | 2025-04-01 | [Azure AD: Failed SSPR](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD_SSPR.md) | ... | Azure AD | AuditLogs |
 | 2025-04-02 | ... | ... | ... | ... |
-| 2025-04-03 | ... | ... | ... | ... |
-| 2025-04-04 | ... | ... | ... | ... |
+| 2025-04-03 | [Azure AD - AuditLogs: Owner Added to App](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-AudtLogs_OwnerAddedToApp.md) | ... | Azure AD | AuditLogs |
+| 2025-04-04 | [Azure AD - AuditLogs: Guest Account Added as App Owner](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-AuditLogs_GuestAccountAddedToAppOwner.md) | ... | Azure AD | AuditLogs |
 | 2025-04-05 | ... | ... | ... | ... |
 | 2025-04-06 | ... | ... | ... | ... |
 | 2025-04-07 | ... | ... | ... | ... |
