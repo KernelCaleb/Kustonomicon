@@ -9,7 +9,7 @@ Tenant-wide admin consent allows all users to access the application by default,
 
 ### Query
 ```kql
-let RiskyScopes = dynamic(["Mail.Read", "Mail.ReadWrite", "MailboxItem.Read", "etc.RiskyScope"]);
+let RiskyScopes = dynamic(["Directory.ReadWrite.All", "AppRoleAssignment.ReadWrite.All", "RoleManagement.ReadWrite.Directory", "Application.ReadWrite.All"]);
 AuditLogs
 | where OperationName == "Consent to application"
 | extend InitiatedByJson = parse_json(InitiatedBy)
