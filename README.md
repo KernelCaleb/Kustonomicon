@@ -15,7 +15,7 @@ This repo contains various KQL based queries and Sentinel Analytic rules in (bot
 
 Note: this repo is a work in progress and will be updated over the course of the year. Check back later for additional content and thanks for stopping by!
 
-Inspired by the fantastic KQL community, be sure to check out all the great work here: https://kqlquery.com/posts/kql-sources-2025/
+Inspired by the fantastic KQL community.
 
 
 ## Detection of the Day
@@ -118,7 +118,7 @@ Inspired by the fantastic KQL community, be sure to check out all the great work
 | 2025-04-04 | [Azure AD - AuditLogs: Guest Account Added as App Owner](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-AuditLogs_GuestAccountAddedToAppOwner.md) | ... | Azure AD | AuditLogs |
 | 2025-04-05 | [Azure AD - AuditLogs: Privileged Role Assigned to External Guest Account](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Active%20Directory/AAD-AuditLogs_PrivilegedRoleAssignedToExternalGuest.md) | ... | Azure AD | AuditLogs |
 | 2025-04-06 | ... | ... | ... | ... |
-| 2025-04-07 | ... | ... | ... | ... |
+| 2025-04-07 | [Azure Activity: Find Uncommon CallerIpAddresses](https://github.com/KernelCaleb/Kustonomicon/blob/main/Queries/Azure%20Activity/AzActivty_FindUncommonCallerIPAddresses.md) | ... | Azure | AzureActivity |
 | 2025-04-08 | ... | ... | ... | ... |
 | 2025-04-09 | ... | ... | ... | ... |
 | 2025-04-10 | ... | ... | ... | ... |
