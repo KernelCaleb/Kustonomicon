@@ -13,14 +13,20 @@ Kusto Query Language (KQL) is designed to be readable, efficient for large datas
 
 ## Basic Operators
 ...
+
 ### `count`
-...
+- Returns the number of records in the input record set.
+[Reference](https://learn.microsoft.com/en-us/kusto/query/count-operator?view=microsoft-fabric)
+
 ### `take` & `limit`
 ...
+
 ### `sample`
 ...
+
 ### `distinct`
 ...
+
 ### `project`
 ...
 
