@@ -31,6 +31,9 @@ Kusto Query Language (KQL) is designed to be readable, efficient for large datas
 ### `project`
 ...
 
+### `ago()`
+[Reference](https://learn.microsoft.com/en-us/kusto/query/ago-function?view=microsoft-fabric)
+
 ## Joins
 ...
 
