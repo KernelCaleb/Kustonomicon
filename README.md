@@ -11,14 +11,12 @@
 ```
 ## About
 
-This repo contains various KQL based queries and Sentinel Analytic rules in (both ARM templates and Yaml), featured in the Detection of the Day from [Misconfigured.io](https://misconfigured.io/)
-
 Note: this repo is a work in progress and will be updated over the course of the year. Check back later for additional content and thanks for stopping by!
 
 Inspired by the fantastic KQL community.
 
 
-## Detection of the Day
+## 100 Days of KQL
 
 | Date | Title | Description | Log Source | Table Name |
 |------|-------|-------------|------------|------------|
