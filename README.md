@@ -15,7 +15,6 @@ Note: This repo is a work in progress and will be updated over the course of the
 
 Inspired by the fantastic KQL community.
 
-
 ## 100 Days of KQL
 
 | Date | Title | Description | Log Source | Table Name |
