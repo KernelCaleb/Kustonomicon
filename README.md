@@ -11,7 +11,9 @@
 ```
 ## About
 
-Note: This repo is a work in progress and will be updated over the course of the year. Check back later for additional content and thanks for stopping by!
+Note: This repo is a work in progress and will be updated over the course of the year, check back later for additional content and thanks for stopping by!
+
+Inspired by the fantastic KQL community.
 
 ## 100 Days of KQL
 
