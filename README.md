@@ -11,10 +11,9 @@
 ```
 ## About
 
-<<<<<<<<< Temporary merge branch 1
-Note: This repo is a work in progress and will be updated over the course of the year, check back later for additional content and thanks for stopping by!
+Welcome to the Kustonomicon, a repo containing various KQL queries, techniques, and notes, with a focus on cloud detection and response.
 
-Inspired by the fantastic KQL community.
+This repo is a work in progress and will be updated over the course of the year, check back later for additional content and thanks for stopping by!
 
 ## 100 Days of KQL
 
