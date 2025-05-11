@@ -38,4 +38,4 @@ Kusto Query Language (KQL) is designed to be readable, efficient for large datas
 ...
 
 ## Fun Facts
-- Named after `Jacques Cousteau` as a reference to "exploring the ocean of data"
+- Named after `Jacques Cousteau` as a reference to *exploring the ocean of data*
